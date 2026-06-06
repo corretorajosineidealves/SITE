@@ -1,0 +1,2652 @@
+
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Josineide Alves Corretora de Imóveis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --brown: #3e2b1c;
+        --accent: #7b5c3f;
+        --text: #352719;
+        --white: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "IBM Plex Sans JP", Arial, sans-serif;
+        color: var(--text);
+        background: var(--white);
+        padding-top: 88px;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 60;
+        background: var(--brown);
+        box-shadow: 0 8px 24px rgba(33, 22, 13, 0.18);
+      }
+
+      .nav {
+        width: min(100%, 1120px);
+        height: 88px;
+        margin: 0 auto;
+        padding: 0 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .brand img {
+        width: 146px;
+        height: auto;
+        display: block;
+      }
+
+      .desktop-links {
+        display: flex;
+        align-items: center;
+        gap: clamp(56px, 8vw, 96px);
+        color: var(--white);
+        font-size: 16px;
+        font-weight: 400;
+      }
+
+      .contact-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 38px;
+        padding: 8px 18px;
+        border-radius: 9px;
+        background: var(--accent);
+        color: var(--white);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
+        white-space: nowrap;
+      }
+
+      .contact-link img,
+      .whatsapp-outline img {
+        width: 20px;
+        height: 20px;
+        display: block;
+      }
+
+      .menu-toggle {
+        display: none;
+        width: 38px;
+        height: 38px;
+        border: 0;
+        background: transparent;
+        color: var(--white);
+        cursor: pointer;
+        padding: 7px;
+      }
+
+      .menu-toggle span {
+        display: block;
+        height: 3px;
+        margin: 4px 0;
+        border-radius: 999px;
+        background: currentColor;
+      }
+
+      .mobile-menu {
+        display: none;
+        background: var(--brown);
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .mobile-menu a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        min-height: 48px;
+        color: var(--white);
+        font-size: 15px;
+      }
+
+      .mobile-menu img {
+        width: 19px;
+        height: 19px;
+      }
+
+      .hero {
+        position: relative;
+        min-height: 456px;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 0 27%;
+        background-image: url("https://josineidealvescorretora.wordpress.com/wp-content/uploads/2026/05/site-josineide-alves-desktop.png");
+        background-size: cover;
+        background-position: center right;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, 0.96) 22%, rgba(255, 255, 255, 0.5) 47%, rgba(255, 255, 255, 0) 70%);
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 2;
+        width: min(100%, 1120px);
+        min-height: 456px;
+        margin: 0 auto;
+        padding: 52px 68px 58px;
+        display: flex;
+        align-items: center;
+      }
+
+      .hero-copy {
+        width: min(430px, 48vw);
+        text-align: left;
+      }
+
+      .location-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        min-height: 35px;
+        padding: 7px 15px;
+        border: 1.3px solid var(--accent);
+        border-radius: 999px;
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .pin {
+        width: 15px;
+        height: 15px;
+        flex: 0 0 auto;
+      }
+
+      h1 {
+        margin: 17px 0 10px;
+        font-size: clamp(39px, 4.45vw, 47px);
+        line-height: 0.94;
+        letter-spacing: 0;
+        font-weight: 400;
+        color: var(--text);
+      }
+
+      h1 strong {
+        font-weight: 700;
+      }
+
+      .description {
+        width: 286px;
+        margin: 0 0 24px;
+        color: #000;
+        font-size: 14px;
+        line-height: 1.28;
+        font-weight: 400;
+      }
+
+      .primary-button,
+      .whatsapp-outline {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        border-radius: 9px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+
+      .primary-button {
+        min-width: 250px;
+        padding: 13px 22px;
+        background: var(--accent);
+        color: var(--white);
+        box-shadow: 0 8px 16px rgba(47, 33, 20, 0.25);
+      }
+
+      .mobile-hero-image {
+        display: none;
+      }
+
+      .whatsapp-outline {
+        display: none;
+      }
+
+      .properties {
+        background: #ede8e0;
+        padding: 70px 36px 92px;
+      }
+
+      .properties-heading {
+        text-align: center;
+        margin: 0 auto 60px;
+      }
+
+      .properties-heading h2 {
+        margin: 0 0 16px;
+        font-size: clamp(38px, 4.3vw, 52px);
+        line-height: 1;
+        font-weight: 400;
+        letter-spacing: 0;
+        background: linear-gradient(90deg, #805a23 0%, #cda36b 50%, #805a23 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .properties-heading p {
+        margin: 0;
+        color: var(--accent);
+        font-size: 16px;
+        line-height: 1.23;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+
+      .property-shell {
+        width: min(100%, 1240px);
+        margin: 0 auto;
+      }
+
+      .property-tabs {
+        display: flex;
+        align-items: flex-end;
+        gap: 16px;
+        padding-left: 62px;
+      }
+
+      .property-tab {
+        min-width: 284px;
+        min-height: 56px;
+        border: 0;
+        border-radius: 10px 10px 0 0;
+        padding: 15px 26px 14px;
+        font: inherit;
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--text);
+        background: #ead2a3;
+        cursor: pointer;
+      }
+
+      .property-tab.is-active {
+        color: var(--white);
+        background: var(--accent);
+      }
+
+      .property-shell.is-filter-mode .property-tab[data-tab="category"] {
+        color: var(--text);
+        background: #ead2a3;
+      }
+
+      .property-shell.is-filter-mode .property-tab[data-tab="all"] {
+        color: var(--white);
+        background: var(--accent);
+      }
+
+      .property-panel {
+        background: var(--accent);
+        border-radius: 22px;
+        padding: 34px 44px 42px;
+      }
+
+      .property-shell.is-filter-mode .property-panel {
+        background: #ead2a3;
+      }
+
+      .category-filters {
+        display: none;
+        margin: 0 0 34px;
+        color: var(--text);
+      }
+
+      .property-shell.is-filter-mode .category-filters {
+        display: block;
+      }
+
+      .filter-label {
+        margin: 0 0 14px;
+        font-size: 18px;
+        line-height: 1;
+        font-weight: 400;
+      }
+
+      .filter-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px 20px;
+      }
+
+      .filter-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 18px;
+        min-height: 52px;
+        min-width: 142px;
+        border: 0;
+        border-radius: 12px;
+        padding: 12px 22px;
+        background: #e1c093;
+        color: var(--text);
+        cursor: pointer;
+        font: inherit;
+        font-size: 18px;
+        font-weight: 400;
+      }
+
+      .filter-chip::before {
+        content: "✓";
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 7px;
+        background: #d0a471;
+        color: var(--white);
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1;
+      }
+
+      .filter-chip.is-selected {
+        background: #f5f2ec;
+      }
+
+      .filter-chip.is-selected::before {
+        background: #8e7a65;
+      }
+
+      .property-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 34px;
+      }
+
+      .property-card {
+        overflow: hidden;
+        border-radius: 16px;
+        background: var(--white);
+        box-shadow: 0 14px 22px rgba(38, 28, 18, 0.18);
+      }
+
+      .property-card img {
+        display: block;
+      }
+
+      .property-card-photo {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+      }
+
+      .property-card-body {
+        padding: 26px 34px 30px;
+      }
+
+      .property-card h3 {
+        margin: 0 0 13px;
+        color: var(--text);
+        font-size: 20px;
+        line-height: 1.05;
+        font-weight: 700;
+      }
+
+      .property-card-location {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 14px;
+        color: var(--text);
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .property-card-location img {
+        width: 18px;
+        height: 18px;
+        object-fit: contain;
+      }
+
+      .property-card-meta {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin-bottom: 26px;
+        color: #7b5c3f;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .more-button {
+        width: 100%;
+        min-height: 44px;
+        border: 0;
+        border-radius: 12px;
+        background: var(--accent);
+        color: var(--white);
+        box-shadow: 0 12px 18px rgba(39, 26, 15, 0.22);
+        cursor: pointer;
+        font: inherit;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+      }
+
+      .property-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 70;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 96px 34px 24px;
+        background: rgba(0, 0, 0, 0.72);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 220ms ease, visibility 220ms ease;
+      }
+
+      .property-overlay.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      body.modal-open {
+        overflow: hidden;
+      }
+
+      .property-modal {
+        position: relative;
+        width: min(1040px, 82vw);
+        max-height: calc(100vh - 120px);
+        margin: 0 auto;
+        overflow: hidden;
+        border-radius: 18px;
+        background: var(--white);
+        box-shadow: 0 22px 58px rgba(0, 0, 0, 0.32);
+      }
+
+      .modal-close,
+      .carousel-arrow {
+        position: absolute;
+        z-index: 8;
+        border: 0;
+        background: transparent;
+        color: var(--white);
+        cursor: pointer;
+        font-family: Arial, sans-serif;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+      }
+
+      .modal-close {
+        top: 22px;
+        left: 22px;
+        width: 34px;
+        height: 34px;
+        font-size: 34px;
+        line-height: 1;
+      }
+
+      .carousel {
+        position: relative;
+        height: 230px;
+        overflow: hidden;
+        background: #ddd;
+      }
+
+      .carousel-track {
+        height: 100%;
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 33.333%;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+      }
+
+      .carousel-track::-webkit-scrollbar {
+        display: none;
+      }
+
+      .carousel-track img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-right: 2px solid var(--white);
+        cursor: zoom-in;
+      }
+
+      .carousel-arrow {
+        top: 50%;
+        transform: translateY(-50%);
+        width: 44px;
+        height: 56px;
+        font-size: 48px;
+      }
+
+      .carousel-arrow.prev {
+        left: 24px;
+      }
+
+      .carousel-arrow.next {
+        right: 18px;
+      }
+
+      .modal-scroll {
+        max-height: calc(100vh - 350px);
+        overflow-y: auto;
+        padding: 28px 58px 104px;
+        scrollbar-color: rgba(123, 92, 63, 0.55) rgba(123, 92, 63, 0.08);
+      }
+
+      .modal-scroll h3 {
+        margin: 0 0 20px;
+        color: var(--text);
+        font-size: 20px;
+        line-height: 1.12;
+        font-weight: 700;
+      }
+
+      .modal-location {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 30px;
+        color: var(--text);
+        font-size: 18px;
+        line-height: 1.1;
+        font-weight: 700;
+      }
+
+      .modal-location img {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+      }
+
+      .detail-group {
+        margin-bottom: 30px;
+      }
+
+      .detail-group h4,
+      .modal-description h4 {
+        margin: 0 0 18px;
+        color: var(--text);
+        font-size: 19px;
+        line-height: 1.1;
+        font-weight: 700;
+      }
+
+      .detail-list {
+        display: grid;
+        gap: 16px;
+      }
+
+      .detail-item {
+        display: grid;
+        grid-template-columns: 35px 1fr;
+        gap: 18px;
+        align-items: start;
+      }
+
+      .detail-item img {
+        width: 25px;
+        height: 25px;
+        margin-top: 3px;
+        opacity: 0.72;
+      }
+
+      .detail-item strong {
+        display: block;
+        color: #51463d;
+        font-size: 13px;
+        line-height: 1.05;
+      }
+
+      .detail-item span {
+        display: block;
+        margin-top: 3px;
+        color: #a7a19d;
+        font-size: 11px;
+        line-height: 1.22;
+      }
+
+      .modal-description {
+        color: var(--text);
+      }
+
+      .modal-description h4 {
+        max-width: 680px;
+        margin-bottom: 18px;
+      }
+
+      .modal-description strong {
+        display: block;
+        margin-bottom: 14px;
+        font-size: 13px;
+        line-height: 1.25;
+      }
+
+      .modal-description p {
+        margin: 0;
+        color: #8a827d;
+        font-size: 12px;
+        line-height: 1.38;
+      }
+
+      .modal-cta {
+        position: sticky;
+        bottom: 0;
+        z-index: 5;
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 24px;
+        align-items: center;
+        min-height: 78px;
+        margin-top: -78px;
+        padding: 16px 24px 16px 34px;
+        border-radius: 14px 14px 0 0;
+        background: #6b4f35;
+      }
+
+      .modal-price {
+        color: var(--white);
+        font-size: 30px;
+        line-height: 1;
+        font-weight: 400;
+      }
+
+      .interest-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        border-radius: 11px;
+        background: var(--white);
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+      }
+
+      .interest-button span {
+        background: linear-gradient(90deg, #805a23 0%, #cda36b 50%, #805a23 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .photo-viewer {
+        position: fixed;
+        inset: 0;
+        z-index: 80;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 42px;
+        background: rgba(0, 0, 0, 0.88);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 200ms ease, visibility 200ms ease;
+      }
+
+      .photo-viewer.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      .photo-viewer img {
+        width: min(100%, 1120px);
+        max-height: 82vh;
+        object-fit: contain;
+        border-radius: 16px;
+        box-shadow: 0 22px 60px rgba(0, 0, 0, 0.34);
+      }
+
+      .photo-close,
+      .photo-arrow {
+        position: absolute;
+        z-index: 2;
+        border: 0;
+        background: rgba(0, 0, 0, 0.25);
+        color: var(--white);
+        cursor: pointer;
+        font-family: Arial, sans-serif;
+      }
+
+      .photo-close {
+        top: 24px;
+        right: 28px;
+        width: 46px;
+        height: 46px;
+        border-radius: 999px;
+        font-size: 34px;
+        line-height: 1;
+      }
+
+      .photo-arrow {
+        top: 50%;
+        width: 56px;
+        height: 72px;
+        transform: translateY(-50%);
+        border-radius: 14px;
+        font-size: 54px;
+        line-height: 1;
+      }
+
+      .photo-arrow.prev {
+        left: 30px;
+      }
+
+      .photo-arrow.next {
+        right: 30px;
+      }
+
+      .about {
+        background: #765538;
+        color: #e8d8c5;
+        padding: 86px 36px 0;
+      }
+
+      .about-header {
+        text-align: center;
+        margin-bottom: 84px;
+      }
+
+      .about-header h2 {
+        margin: 0 0 24px;
+        font-size: clamp(38px, 4.2vw, 54px);
+        line-height: 1;
+        font-weight: 400;
+        letter-spacing: 0;
+      }
+
+      .about-header p {
+        margin: 0;
+        color: #fff5ea;
+        font-size: 18px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .about-content {
+        width: min(100%, 1210px);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: minmax(480px, 620px) minmax(360px, 410px);
+        gap: 62px;
+        align-items: start;
+      }
+
+      .broker-card {
+        min-height: 860px;
+        border-radius: 22px;
+        padding: 76px 82px 58px;
+        background: #3e2b1c;
+        box-shadow: 0 18px 36px rgba(34, 23, 14, 0.24);
+      }
+
+      .broker-brand {
+        display: grid;
+        grid-template-columns: 124px 1fr;
+        gap: 46px;
+        align-items: center;
+        margin-bottom: 66px;
+      }
+
+      .broker-photo {
+        width: 108px;
+        height: 108px;
+        border-radius: 999px;
+        object-fit: cover;
+        background: #cda36b;
+      }
+
+      .broker-logo {
+        width: 292px;
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .broker-feature-list {
+        display: grid;
+        gap: 22px;
+        margin-bottom: 42px;
+      }
+
+      .broker-feature {
+        display: grid;
+        grid-template-columns: 78px 1fr;
+        gap: 28px;
+        align-items: center;
+        min-height: 118px;
+        padding: 22px 32px;
+        border-radius: 15px;
+        background: rgba(123, 92, 63, 0.54);
+      }
+
+      .broker-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 72px;
+        height: 72px;
+        border-radius: 999px;
+        background: #7b5c3f;
+        color: #d8c2a7;
+      }
+
+      .broker-icon svg,
+      .footer-icon svg {
+        width: 34px;
+        height: 34px;
+        display: block;
+      }
+
+      .broker-feature p {
+        margin: 0;
+        color: #d8c2a7;
+        font-size: 25px;
+        line-height: 0.98;
+        font-weight: 400;
+      }
+
+      .broker-contact {
+        display: grid;
+        gap: 26px;
+        margin: 0 0 38px;
+        color: #d8c2a7;
+        font-size: 24px;
+      }
+
+      .broker-contact-row,
+      .footer-contact-row {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .broker-contact-row svg {
+        width: 34px;
+        height: 34px;
+        color: #a67d56;
+        flex: 0 0 auto;
+      }
+
+      .broker-whatsapp {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 26px;
+        width: 100%;
+        min-height: 82px;
+        border-radius: 15px;
+        background: #31ba39;
+        color: #fff;
+        font-size: 24px;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+
+      .broker-whatsapp img {
+        width: 38px;
+        height: 38px;
+      }
+
+      .testimonials h3 {
+        margin: 0 0 28px 14px;
+        color: #d8c2a7;
+        font-size: 46px;
+        line-height: 1;
+        font-weight: 400;
+      }
+
+      .testimonial-list {
+        display: grid;
+        gap: 36px;
+      }
+
+      .testimonial-card {
+        min-height: 170px;
+        border-radius: 22px;
+        padding: 28px 40px 26px;
+        background: #fff;
+        color: var(--text);
+        box-shadow: 0 16px 24px rgba(33, 22, 13, 0.22);
+      }
+
+      .testimonial-author {
+        display: grid;
+        grid-template-columns: 52px minmax(0, 1fr);
+        align-items: center;
+        gap: 18px;
+        margin-bottom: 26px;
+        font-size: 24px;
+        font-weight: 400;
+      }
+
+      .avatar-icon {
+        width: 52px;
+        height: 52px;
+        color: #c9c9c9;
+        flex: 0 0 auto;
+      }
+
+      .testimonial-card p {
+        width: auto;
+        max-width: 100%;
+        margin: 0 0 0 70px;
+        color: #8e8e8e;
+        font-size: 17px;
+        line-height: 1.02;
+        overflow-wrap: anywhere;
+      }
+
+      .floating-whatsapp {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        z-index: 75;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 66px;
+        height: 66px;
+        border-radius: 999px;
+        background: #31ba39;
+        box-shadow: 0 12px 28px rgba(18, 80, 22, 0.34);
+      }
+
+      .floating-whatsapp img {
+        width: 38px;
+        height: 38px;
+        display: block;
+      }
+
+      .site-footer {
+        margin-top: 100px;
+        margin-left: -36px;
+        margin-right: -36px;
+        background: #3e2b1c;
+        color: #d8c2a7;
+        padding: 58px 36px 54px;
+      }
+
+      .footer-inner {
+        width: min(100%, 560px);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 74px;
+        align-items: center;
+      }
+
+      .footer-logo {
+        width: 230px;
+        height: auto;
+        display: block;
+      }
+
+      .footer-info {
+        display: grid;
+        gap: 18px;
+      }
+
+      .footer-contact-row {
+        gap: 18px;
+        font-size: 16px;
+      }
+
+      .footer-icon {
+        color: #cda36b;
+        width: 24px;
+        height: 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .footer-icon svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 46px;
+        margin-top: 22px;
+        font-size: 16px;
+      }
+
+      @media (max-width: 767px) {
+        body {
+          padding-top: 46px;
+        }
+
+        .nav {
+          height: 46px;
+          padding: 0 14px;
+        }
+
+        .brand img {
+          width: 83px;
+        }
+
+        .desktop-links {
+          display: none;
+        }
+
+        .menu-toggle {
+          display: block;
+        }
+
+        .site-header.is-open .mobile-menu {
+          display: block;
+        }
+
+        .hero {
+          min-height: 0;
+          overflow: visible;
+        }
+
+        .hero::before,
+        .hero::after {
+          display: none;
+        }
+
+        .mobile-hero-image {
+          display: block;
+          width: 100%;
+          height: 179px;
+          object-fit: cover;
+          object-position: center top;
+        }
+
+        .hero-inner {
+          min-height: 0;
+          padding: 17px 32px 40px;
+          display: block;
+        }
+
+        .hero-copy {
+          width: 100%;
+          text-align: center;
+        }
+
+        .location-pill {
+          min-height: 28px;
+          padding: 5px 12px;
+          gap: 7px;
+          font-size: 10px;
+        }
+
+        .pin {
+          width: 13px;
+          height: 13px;
+        }
+
+        h1 {
+          margin: 16px auto 18px;
+          max-width: 295px;
+          font-size: 31px;
+          line-height: 1.02;
+        }
+
+        .description {
+          width: min(100%, 270px);
+          margin: 0 auto 26px;
+          font-size: 14px;
+          line-height: 1.33;
+        }
+
+        .primary-button {
+          width: min(100%, 242px);
+          min-height: 43px;
+          padding: 12px 14px;
+          font-size: 11px;
+          letter-spacing: 2.7px;
+        }
+
+        .whatsapp-outline {
+          display: inline-flex;
+          gap: 14px;
+          width: min(100%, 242px);
+          min-height: 43px;
+          margin-top: 12px;
+          border: 1.5px solid var(--accent);
+          color: var(--accent);
+          background: var(--white);
+          font-size: 11px;
+          letter-spacing: 2.7px;
+        }
+
+        .properties {
+          padding: 64px 35px 64px;
+        }
+
+        .properties-heading {
+          margin-bottom: 42px;
+        }
+
+        .properties-heading h2 {
+          margin-bottom: 12px;
+          font-size: 28px;
+        }
+
+        .properties-heading p {
+          font-size: 9px;
+          line-height: 1.2;
+        }
+
+        .property-tabs {
+          gap: 7px;
+          padding-left: 19px;
+        }
+
+        .property-tab {
+          min-width: 121px;
+          min-height: 25px;
+          padding: 7px 9px 6px;
+          border-radius: 7px 7px 0 0;
+          font-size: 10px;
+        }
+
+        .property-panel {
+          border-radius: 10px;
+          padding: 27px 27px 32px;
+        }
+
+        .category-filters {
+          margin-bottom: 31px;
+        }
+
+        .filter-label {
+          margin-bottom: 9px;
+          font-size: 10px;
+        }
+
+        .filter-options {
+          gap: 6px 9px;
+        }
+
+        .filter-chip {
+          gap: 9px;
+          min-width: 84px;
+          min-height: 32px;
+          border-radius: 5px;
+          padding: 8px 12px;
+          font-size: 10px;
+        }
+
+        .filter-chip::before {
+          width: 15px;
+          height: 15px;
+          border-radius: 4px;
+          font-size: 11px;
+        }
+
+        .property-grid {
+          grid-template-columns: 1fr;
+          gap: 26px;
+        }
+
+        .property-card:nth-child(n + 3) {
+          display: none;
+        }
+
+        .property-card {
+          border-radius: 9px;
+        }
+
+        .property-card-photo {
+          height: 154px;
+        }
+
+        .property-card-body {
+          padding: 19px 26px 22px;
+        }
+
+        .property-card h3 {
+          margin-bottom: 9px;
+          font-size: 14px;
+        }
+
+        .property-card-location {
+          gap: 6px;
+          margin-bottom: 10px;
+          font-size: 10px;
+        }
+
+        .property-card-location img {
+          width: 12px;
+          height: 12px;
+        }
+
+        .property-card-meta {
+          gap: 10px;
+          margin-bottom: 18px;
+          font-size: 9px;
+        }
+
+        .more-button {
+          min-height: 34px;
+          border-radius: 5px;
+          font-size: 9px;
+          letter-spacing: 3px;
+        }
+
+        .property-overlay {
+          align-items: flex-start;
+          padding: 54px 35px 28px;
+          overflow-y: auto;
+        }
+
+        .property-modal {
+          width: 100%;
+          max-height: calc(100vh - 82px);
+          margin: 0;
+          border-radius: 9px;
+        }
+
+        .modal-close {
+          top: 7px;
+          left: 7px;
+          width: 18px;
+          height: 18px;
+          font-size: 18px;
+        }
+
+        .carousel {
+          height: 98px;
+        }
+
+        .carousel-track {
+          grid-auto-columns: 33.333%;
+        }
+
+        .carousel-arrow {
+          width: 22px;
+          height: 28px;
+          font-size: 27px;
+        }
+
+        .carousel-arrow.prev {
+          left: 7px;
+        }
+
+        .carousel-arrow.next {
+          right: 5px;
+        }
+
+        .modal-scroll {
+          max-height: calc(100vh - 180px);
+          padding: 17px 25px 112px;
+        }
+
+        .modal-scroll h3 {
+          margin-bottom: 12px;
+          font-size: 12px;
+          line-height: 1.12;
+        }
+
+        .modal-location {
+          gap: 8px;
+          margin-bottom: 20px;
+          font-size: 11px;
+        }
+
+        .modal-location img {
+          width: 15px;
+          height: 15px;
+        }
+
+        .detail-group {
+          margin-bottom: 20px;
+        }
+
+        .detail-group h4,
+        .modal-description h4 {
+          margin-bottom: 13px;
+          font-size: 11px;
+        }
+
+        .detail-list {
+          gap: 12px;
+        }
+
+        .detail-item {
+          grid-template-columns: 18px 1fr;
+          gap: 9px;
+        }
+
+        .detail-item img {
+          width: 13px;
+          height: 13px;
+          margin-top: 1px;
+        }
+
+        .detail-item strong {
+          font-size: 9px;
+        }
+
+        .detail-item span {
+          font-size: 7px;
+        }
+
+        .modal-description h4 {
+          margin-bottom: 12px;
+          font-size: 11px;
+        }
+
+        .modal-description strong {
+          margin-bottom: 11px;
+          font-size: 8px;
+        }
+
+        .modal-description p {
+          font-size: 8px;
+        }
+
+        .modal-cta {
+          grid-template-columns: 1fr;
+          gap: 8px;
+          min-height: 86px;
+          margin-top: -86px;
+          padding: 10px 16px 12px;
+          border-radius: 7px 7px 0 0;
+        }
+
+        .modal-price {
+          font-size: 18px;
+          text-align: left;
+        }
+
+        .interest-button {
+          width: 100%;
+          min-height: 32px;
+          border-radius: 5px;
+          font-size: 7px;
+          letter-spacing: 2.7px;
+        }
+
+        .photo-viewer {
+          padding: 22px;
+        }
+
+        .photo-viewer img {
+          max-height: 76vh;
+          border-radius: 10px;
+        }
+
+        .photo-close {
+          top: 14px;
+          right: 14px;
+          width: 34px;
+          height: 34px;
+          font-size: 26px;
+        }
+
+        .photo-arrow {
+          width: 38px;
+          height: 54px;
+          border-radius: 10px;
+          font-size: 38px;
+        }
+
+        .photo-arrow.prev {
+          left: 8px;
+        }
+
+        .photo-arrow.next {
+          right: 8px;
+        }
+
+        .about {
+          padding: 72px 35px 0;
+          background: #765538;
+        }
+
+        .about-header {
+          margin-bottom: 34px;
+        }
+
+        .about-header h2 {
+          margin-bottom: 20px;
+          font-size: 34px;
+        }
+
+        .about-header p {
+          font-size: 14px;
+        }
+
+        .about-content {
+          width: 100%;
+          display: block;
+        }
+
+        .broker-card {
+          min-height: 0;
+          border-radius: 18px;
+          padding: 50px 54px 44px;
+          background: #3e2b1c;
+        }
+
+        .broker-brand {
+          grid-template-columns: 74px 1fr;
+          gap: 26px;
+          margin-bottom: 42px;
+        }
+
+        .broker-photo {
+          width: 70px;
+          height: 70px;
+        }
+
+        .broker-logo {
+          width: 190px;
+        }
+
+        .broker-feature-list {
+          gap: 12px;
+          margin-bottom: 28px;
+        }
+
+        .broker-feature {
+          grid-template-columns: 52px 1fr;
+          gap: 18px;
+          min-height: 77px;
+          padding: 14px 16px;
+          border-radius: 7px;
+        }
+
+        .broker-icon {
+          width: 46px;
+          height: 46px;
+        }
+
+        .broker-icon svg {
+          width: 24px;
+          height: 24px;
+        }
+
+        .broker-feature p {
+          font-size: 14px;
+          line-height: 1.02;
+        }
+
+        .broker-contact {
+          gap: 19px;
+          margin-bottom: 29px;
+          font-size: 14px;
+        }
+
+        .broker-contact-row {
+          gap: 20px;
+        }
+
+        .broker-contact-row svg {
+          width: 22px;
+          height: 22px;
+        }
+
+        .broker-whatsapp {
+          gap: 15px;
+          min-height: 50px;
+          border-radius: 8px;
+          font-size: 14px;
+        }
+
+        .broker-whatsapp img {
+          width: 26px;
+          height: 26px;
+        }
+
+        .testimonials {
+          margin-top: 68px;
+        }
+
+        .testimonials h3 {
+          margin: 0 0 44px;
+          text-align: center;
+          font-size: 35px;
+        }
+
+        .testimonial-list {
+          gap: 31px;
+        }
+
+        .testimonial-card {
+          min-height: 162px;
+          border-radius: 7px;
+          padding: 27px 24px 24px;
+        }
+
+        .testimonial-author {
+          grid-template-columns: 44px minmax(0, 1fr);
+          gap: 15px;
+          margin-bottom: 25px;
+          font-size: 18px;
+        }
+
+        .avatar-icon {
+          width: 44px;
+          height: 44px;
+        }
+
+        .testimonial-card p {
+          width: auto;
+          margin-left: 59px;
+          font-size: 13px;
+          line-height: 1.04;
+        }
+
+        .floating-whatsapp {
+          right: 18px;
+          bottom: 18px;
+          width: 56px;
+          height: 56px;
+        }
+
+        .floating-whatsapp img {
+          width: 32px;
+          height: 32px;
+        }
+
+        .site-footer {
+          margin: 95px -35px 0;
+          padding: 52px 35px 38px;
+          background: #3e2b1c;
+        }
+
+        .footer-inner {
+          width: 100%;
+          grid-template-columns: 165px 1fr;
+          gap: 28px;
+        }
+
+        .footer-logo {
+          width: 160px;
+        }
+
+        .footer-info {
+          gap: 13px;
+        }
+
+        .footer-contact-row {
+          gap: 10px;
+          font-size: 11px;
+        }
+
+        .footer-icon,
+        .footer-icon svg {
+          width: 15px;
+          height: 15px;
+        }
+
+        .footer-links {
+          gap: 25px;
+          margin-top: 18px;
+          font-size: 11px;
+        }
+      }
+
+
+      /* ===== Refinamentos premium UX/UI + animações novas ===== */
+      :root {
+        --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      a,
+      button,
+      .property-card,
+      .testimonial-card,
+      .broker-feature,
+      .broker-card,
+      .floating-whatsapp {
+        transition:
+          transform 360ms var(--ease-premium),
+          box-shadow 360ms var(--ease-premium),
+          background-color 360ms var(--ease-premium),
+          color 360ms var(--ease-premium),
+          border-color 360ms var(--ease-premium),
+          opacity 360ms var(--ease-premium),
+          filter 360ms var(--ease-premium);
+      }
+
+      .site-header {
+        transition: transform 320ms var(--ease-premium), box-shadow 320ms var(--ease-premium), background-color 320ms var(--ease-premium), backdrop-filter 320ms var(--ease-premium);
+      }
+
+      .site-header.is-scrolled {
+        background: rgba(62, 43, 28, 0.94);
+        backdrop-filter: blur(18px);
+        box-shadow: 0 14px 34px rgba(33, 22, 13, 0.24);
+      }
+
+      .site-header.is-scrolled .nav {
+        height: 74px;
+      }
+
+      .nav {
+        transition: height 320ms var(--ease-premium);
+      }
+
+      .desktop-links a:not(.contact-link),
+      .footer-links a {
+        position: relative;
+      }
+
+      .desktop-links a:not(.contact-link)::after,
+      .footer-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -7px;
+        height: 1px;
+        background: #ead2a3;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 300ms var(--ease-premium);
+      }
+
+      .desktop-links a:not(.contact-link):hover::after,
+      .footer-links a:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+
+      .contact-link:hover,
+      .primary-button:hover,
+      .whatsapp-outline:hover,
+      .broker-whatsapp:hover,
+      .interest-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 34px rgba(47, 33, 20, 0.28);
+        filter: saturate(1.06);
+      }
+
+      .property-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 24px 42px rgba(38, 28, 18, 0.26);
+      }
+
+      .property-card {
+        will-change: transform;
+      }
+
+      .property-card-photo {
+        transition: transform 700ms var(--ease-premium), filter 700ms var(--ease-premium);
+      }
+
+      .property-card:hover .property-card-photo {
+        transform: scale(1.055);
+        filter: contrast(1.04) saturate(1.05);
+      }
+
+      .property-card { overflow: hidden; }
+
+      .more-button:hover,
+      .property-tab:hover,
+      .filter-chip:hover {
+        transform: translateY(-2px);
+      }
+
+      .more-button:hover {
+        box-shadow: 0 16px 26px rgba(39, 26, 15, 0.28);
+      }
+
+      .property-tab,
+      .filter-chip,
+      .more-button,
+      .menu-toggle {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .property-tab.is-active {
+        box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 -8px 24px rgba(62,43,28,.12);
+      }
+
+      .filter-chip.is-selected {
+        box-shadow: inset 0 0 0 1px rgba(123, 92, 63, 0.18), 0 10px 20px rgba(62,43,28,.08);
+      }
+
+      .property-overlay {
+        transition: opacity 280ms var(--ease-premium), visibility 280ms var(--ease-premium);
+        backdrop-filter: blur(3px);
+      }
+
+      .property-modal {
+        transform: translateY(28px) scale(0.97);
+        opacity: 0;
+        transition: transform 360ms var(--ease-premium), opacity 360ms var(--ease-premium);
+      }
+
+      .property-overlay.is-open .property-modal {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+
+      .modal-close,
+      .carousel-arrow,
+      .photo-close,
+      .photo-arrow {
+        transition: transform 260ms var(--ease-premium), background-color 260ms var(--ease-premium), opacity 260ms var(--ease-premium);
+      }
+
+      .modal-close:hover,
+      .carousel-arrow:hover,
+      .photo-close:hover,
+      .photo-arrow:hover {
+        transform: scale(1.08);
+      }
+
+      .carousel-arrow.prev:hover,
+      .carousel-arrow.next:hover {
+        transform: translateY(-50%) scale(1.08);
+      }
+
+      .testimonial-card:hover,
+      .broker-feature:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 24px 36px rgba(33, 22, 13, 0.26);
+      }
+
+      .floating-whatsapp {
+        animation: whatsappPulse 2.8s ease-in-out infinite;
+      }
+
+      .floating-whatsapp:hover {
+        transform: translateY(-4px) scale(1.04);
+        animation-play-state: paused;
+      }
+
+      @keyframes whatsappPulse {
+        0%, 100% { box-shadow: 0 12px 28px rgba(18, 80, 22, 0.34), 0 0 0 0 rgba(49, 186, 57, 0.24); }
+        50% { box-shadow: 0 16px 34px rgba(18, 80, 22, 0.38), 0 0 0 12px rgba(49, 186, 57, 0); }
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        filter: blur(5px);
+        transition: opacity 760ms var(--ease-premium), transform 760ms var(--ease-premium), filter 760ms var(--ease-premium);
+        transition-delay: var(--delay, 0ms);
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+
+      .hero-copy > * {
+        opacity: 0;
+        transform: translateY(22px);
+        animation: heroEntrance 850ms var(--ease-premium) forwards;
+      }
+
+      .hero-copy > *:nth-child(1) { animation-delay: 80ms; }
+      .hero-copy > *:nth-child(2) { animation-delay: 190ms; }
+      .hero-copy > *:nth-child(3) { animation-delay: 300ms; }
+      .hero-copy > *:nth-child(4) { animation-delay: 410ms; }
+      .hero-copy > *:nth-child(5) { animation-delay: 520ms; }
+
+      @keyframes heroEntrance {
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      a:focus-visible,
+      button:focus-visible {
+        outline: 3px solid rgba(205, 163, 107, 0.78);
+        outline-offset: 4px;
+      }
+
+      @media (min-width: 768px) {
+        .about {
+          padding: 70px 36px 0;
+        }
+
+        .about-header {
+          margin-bottom: 52px;
+        }
+
+        .about-header h2 {
+          margin-bottom: 16px;
+          font-size: clamp(34px, 3.4vw, 46px);
+        }
+
+        .about-header p {
+          font-size: 15px;
+          letter-spacing: .7px;
+        }
+
+        .about-content {
+          width: min(100%, 1080px);
+          grid-template-columns: minmax(420px, 520px) minmax(340px, 390px);
+          gap: 48px;
+          justify-content: center;
+        }
+
+        .broker-card {
+          min-height: 0;
+          border-radius: 20px;
+          padding: 46px 52px 42px;
+        }
+
+        .broker-brand {
+          grid-template-columns: 96px 1fr;
+          gap: 32px;
+          margin-bottom: 42px;
+        }
+
+        .broker-photo {
+          width: 90px;
+          height: 90px;
+        }
+
+        .broker-logo {
+          width: 240px;
+        }
+
+        .broker-feature-list {
+          gap: 16px;
+          margin-bottom: 30px;
+        }
+
+        .broker-feature {
+          grid-template-columns: 58px 1fr;
+          gap: 20px;
+          min-height: 88px;
+          padding: 16px 22px;
+          border-radius: 12px;
+        }
+
+        .broker-icon {
+          width: 54px;
+          height: 54px;
+        }
+
+        .broker-icon svg {
+          width: 26px;
+          height: 26px;
+        }
+
+        .broker-feature p {
+          font-size: 17px;
+          line-height: 1.08;
+        }
+
+        .broker-contact {
+          gap: 16px;
+          margin-bottom: 26px;
+          font-size: 18px;
+        }
+
+        .broker-contact-row {
+          gap: 18px;
+        }
+
+        .broker-contact-row svg {
+          width: 26px;
+          height: 26px;
+        }
+
+        .broker-whatsapp {
+          gap: 16px;
+          min-height: 58px;
+          border-radius: 12px;
+          font-size: 16px;
+        }
+
+        .broker-whatsapp img {
+          width: 30px;
+          height: 30px;
+        }
+
+        .testimonials h3 {
+          margin: 0 0 22px 8px;
+          font-size: 36px;
+        }
+
+        .testimonial-list {
+          gap: 22px;
+        }
+
+        .testimonial-card {
+          min-height: 132px;
+          border-radius: 16px;
+          padding: 22px 28px 22px;
+        }
+
+        .testimonial-author {
+          grid-template-columns: 42px minmax(0, 1fr);
+          gap: 14px;
+          margin-bottom: 18px;
+          font-size: 18px;
+        }
+
+        .avatar-icon {
+          width: 42px;
+          height: 42px;
+        }
+
+        .testimonial-card p {
+          margin-left: 56px;
+          font-size: 13px;
+          line-height: 1.28;
+        }
+
+        .site-footer {
+          margin-top: 76px;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .site-header.is-scrolled .nav {
+          height: 46px;
+        }
+
+        .menu-toggle span {
+          transition: transform 260ms var(--ease-premium), opacity 220ms var(--ease-premium);
+        }
+
+        .site-header.is-open .menu-toggle span:nth-child(1) {
+          transform: translateY(7px) rotate(45deg);
+        }
+
+        .site-header.is-open .menu-toggle span:nth-child(2) {
+          opacity: 0;
+        }
+
+        .site-header.is-open .menu-toggle span:nth-child(3) {
+          transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .mobile-menu {
+          display: block;
+          max-height: 0;
+          overflow: hidden;
+          opacity: 0;
+          transform: translateY(-8px);
+          transition: max-height 360ms var(--ease-premium), opacity 260ms var(--ease-premium), transform 360ms var(--ease-premium);
+        }
+
+        .site-header.is-open .mobile-menu {
+          max-height: 250px;
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+
+        .reveal,
+        .hero-copy > * {
+          opacity: 1 !important;
+          transform: none !important;
+          filter: none !important;
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+    <header class="site-header" id="siteHeader">
+      <nav class="nav" aria-label="Navegação principal">
+        <a class="brand" href="#inicio" aria-label="Josineide Alves Corretora de Imóveis">
+          <img src="https://josineidealvescorretora.wordpress.com/wp-content/uploads/2026/05/josineide-alves.png" alt="Josineide Alves Corretora de Imóveis" />
+        </a>
+
+        <div class="desktop-links">
+          <a href="#inicio">Início</a>
+          <a href="#imoveis">Imóveis</a>
+          <a href="#sobre">Sobre</a>
+          <a class="contact-link" href="https://wa.me/5563999337030?text=Ol%C3%A1%2C%20Josineide%21%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20sobre%20im%C3%B3veis%20em%20Palmas%20e%20regi%C3%A3o." aria-label="Entrar em Contato pelo WhatsApp">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="" />
+            <span>Entrar em Contato</span>
+          </a>
+        </div>
+
+        <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#inicio">Início</a>
+        <a href="#imoveis">Imóveis</a>
+        <a href="#sobre">Sobre</a>
+        <a href="https://wa.me/5563999337030?text=Ol%C3%A1%2C%20Josineide%21%20Vim%20pelo%20site%20e%20gostaria%20de%20entrar%20em%20contato%20pelo%20WhatsApp.">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="" />
+          <span>Entrar em Contato</span>
+        </a>
+      </div>
+    </header>
+
+    <main id="inicio" class="hero">
+      <img class="mobile-hero-image" src="https://josineidealvescorretora.wordpress.com/wp-content/uploads/2026/05/site-josineide-alves-mobile.png" alt="Casa moderna à venda em Palmas" />
+
+      <section class="hero-inner" aria-label="Seção inicial">
+        <div class="hero-copy">
+          <div class="location-pill">
+            <svg class="pin" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z" />
+            </svg>
+            <span>Palmas - Tocantins e Região</span>
+          </div>
+
+          <h1>
+            O <strong>imóvel ideal</strong><br />
+            existe e eu te ajudo<br />
+            a <strong>encontrá-lo.</strong>
+          </h1>
+
+          <p class="description">
+            As melhores novidades disponíveis no Mercado. Casas, apartamentos, lotes e chácaras em Palmas e região
+          </p>
+
+          <a class="primary-button" href="#imoveis">Ver imóveis disponíveis</a>
+
+          <a class="whatsapp-outline" href="https://wa.me/5563999337030?text=Ol%C3%A1%2C%20Josineide%21%20Vim%20pelo%20site%20e%20quero%20atendimento%20pelo%20WhatsApp." aria-label="Fale no WhatsApp">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="" />
+            <span>Fale no WhatsApp</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <section id="imoveis" class="properties" aria-label="Imoveis a venda">
+      <div class="properties-heading">
+        <h2>Imóveis à venda</h2>
+        <p>
+          Use os filtros para achar facilmente<br />
+          a melhor opção para você
+        </p>
+      </div>
+
+      <div class="property-shell" id="propertyShell">
+        <div class="property-tabs" aria-label="Filtros de imoveis">
+          <button class="property-tab is-active" type="button" data-tab="all">Todos os Imóveis</button>
+          <button class="property-tab" type="button" data-tab="category">Buscar por Categoria</button>
+        </div>
+
+        <div class="property-panel">
+          <div class="category-filters" aria-label="Categorias de imóveis">
+            <p class="filter-label">Filtros:</p>
+            <div class="filter-options">
+              <button class="filter-chip" type="button">Casas</button>
+              <button class="filter-chip is-selected" type="button">Apartamentos</button>
+              <button class="filter-chip" type="button">Lotes</button>
+              <button class="filter-chip" type="button">Chácaras</button>
+              <button class="filter-chip" type="button">Outros</button>
+            </div>
+          </div>
+
+          <div class="property-grid">
+            <article class="property-card">
+              <img class="property-card-photo" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80" alt="Casa de condomínio" />
+              <div class="property-card-body">
+                <h3>Casa de Condomínio à venda com 4 quartos, 345m²</h3>
+                <div class="property-card-location">
+                  <img src="https://josineidealvescorretora.wordpress.com/wp-content/uploads/2026/05/site-josineide-alves-desktop-3.png?w=734&amp;allow_lossy=1" alt="" />
+                  <span>Mirante do Lago, Palmas - TO</span>
+                </div>
+                <div class="property-card-meta">
+                  <span>4 Quartos</span>
+                  <span>4 Banheiros</span>
+                  <span>345m²</span>
+                </div>
+                <button class="more-button" type="button" data-open-property>Mais informações</button>
+              </div>
+            </article>
+
+            <article class="property-card">
+              <img class="property-card-photo" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80" alt="Casa moderna" />
+              <div class="property-card-body">
+                <h3>Casa de Condomínio à venda com 4 quartos, 345m²</h3>
+                <div class="property-card-location">
+                  <img src="https://josineidealvescorretora.wordpress.com/wp-content/uploads/2026/05/site-josineide-alves-desktop-3.png?w=734&amp;allow_lossy=1" alt="" />
+                  <span>Mirante do Lago, Palmas - TO</span>
+                </div>
+                <div class="property-card-meta">
+                  <span>4 Quartos</span>
+                  <span>4 Banheiros</span>
+                  <span>345m²</span>
+                </div>
+                <button class="more-button" type="button" data-open-property>Mais informações</button>
+              </div>
+            </article>
+
+            <article class="property-card">
+              <img class="property-card-photo" src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80" alt="Fachada de casa" />
+              <div class="property-card-body">
+                <h3>Casa de Condomínio à venda com 4 quartos, 345m²</h3>
+                <div class="property-card-location">
+                  <img src="https://josineidealvescorretora.wordpress.com/wp-content/uploads/2026/05/site-josineide-alves-desktop-3.png?w=734&amp;allow_lossy=1" alt="" />
+                  <span>Mirante do Lago, Palmas - TO</span>
+                </div>
+                <div class="property-card-meta">
+                  <span>4 Quartos</span>
+                  <span>4 Banheiros</span>
+                  <span>345m²</span>
+                </div>
+                <button class="more-button" type="button" data-open-property>Mais informações</button>
+              </div>
+            </article>
+
+            <article class="property-card">
+              <img class="property-card-photo" src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=900&q=80" alt="Casa com jardim" />
+              <div class="property-card-body">
+                <h3>Casa de Condomínio à venda com 4 quartos, 345m²</h3>
+                <div class="property-card-location">
+                  <img src="https://josineidealvescorretora.wordpress.com/wp-content/uploads/2026/05/site-josineide-alves-desktop-3.png?w=734&amp;allow_lossy=1" alt="" />
+                  <span>Mirante do Lago, Palmas - TO</span>
+                </div>
+                <div class="property-card-meta">
+                  <span>4 Quartos</span>
+                  <span>4 Banheiros</span>
+                  <span>345m²</span>
+                </div>
+                <button class="more-button" type="button" data-open-property>Mais informações</button>
+              </div>
+            </article>
+
+            <article class="property-card">
+              <img class="property-card-photo" src="https://images.unsplash.com/photo-1600607687644-c7171b42498b?auto=format&fit=crop&w=900&q=80" alt="Interior de casa" />
+              <div class="property-card-body">
+                <h3>Casa de Condomínio à venda com 4 quartos, 345m²</h3>
+                <div class="property-card-location">
+                  <img src="https://josineidealvescorretora.wordpress.com/wp-content/uploads/2026/05/site-josineide-alves-desktop-3.png?w=734&amp;allow_lossy=1" alt="" />
+                  <span>Mirante do Lago, Palmas - TO</span>
+                </div>
+                <div class="property-card-meta">
+                  <span>4 Quartos</span>
+                  <span>4 Banheiros</span>
+                  <span>345m²</span>
+                </div>
+                <button class="more-button" type="button" data-open-property>Mais informações</button>
+              </div>
+            </article>
+
+            <article class="property-card">
+              <img class="property-card-photo" src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=900&q=80" alt="Casa ampla" />
+              <div class="property-card-body">
+                <h3>Casa de Condomínio à venda com 4 quartos, 345m²</h3>
+                <div class="property-card-location">
+                  <img src="https://josineidealvescorretora.wordpress.com/wp-content/uploads/2026/05/site-josineide-alves-desktop-3.png?w=734&amp;allow_lossy=1" alt="" />
+                  <span>Mirante do Lago, Palmas - TO</span>
+                </div>
+                <div class="property-card-meta">
+                  <span>4 Quartos</span>
+                  <span>4 Banheiros</span>
+                  <span>345m²</span>
+                </div>
+                <button class="more-button" type="button" data-open-property>Mais informações</button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre" class="about" aria-label="Sobre a Corretora">
+      <div class="about-header">
+        <h2>Sobre a Corretora</h2>
+        <p>Josineide Alves | CRECI 1907</p>
+      </div>
+
+      <div class="about-content">
+        <article class="broker-card">
+          <div class="broker-brand">
+            <img class="broker-photo" src="https://josineidealvescorretora.wordpress.com/wp-content/uploads/2026/05/site-josineide-alves-mobile-6.png" alt="Josineide Alves" />
+            <img class="broker-logo" src="https://josineidealvescorretora.wordpress.com/wp-content/uploads/2026/05/josineide-alves.png" alt="Josineide Alves Corretora de Imóveis" />
+          </div>
+
+          <div class="broker-feature-list">
+            <div class="broker-feature">
+              <span class="broker-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="5" width="16" height="15" rx="2" />
+                  <path d="M8 3v4M16 3v4M4 10h16" />
+                  <path d="M8 13h2M12 13h2M16 13h1M8 16h2M12 16h2M16 16h1" />
+                </svg>
+              </span>
+              <p>+X anos no mercado<br />somando +Y clientes<br />satisfeitos</p>
+            </div>
+
+            <div class="broker-feature">
+              <span class="broker-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M8 12l3 3a2 2 0 0 0 3 0l5-5" />
+                  <path d="M2 12l4-4 5 5" />
+                  <path d="M22 12l-4-4-7 7" />
+                  <path d="M6 16l2 2M10 18l1 1M15 17l2 2" />
+                </svg>
+              </span>
+              <p>Atendimento, especializado,<br />humanizado e transparente<br />em cada etapa.</p>
+            </div>
+
+            <div class="broker-feature">
+              <span class="broker-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 21s7-7.2 7-12a7 7 0 0 0-14 0c0 4.8 7 12 7 12Z" />
+                  <circle cx="12" cy="9" r="2.2" />
+                </svg>
+              </span>
+              <p>Especialista em Lançamento<br />e Oportunidades em Palmas<br />e região</p>
+            </div>
+          </div>
+
+          <div class="broker-contact">
+            <div class="broker-contact-row">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M3 11.5 12 4l9 7.5v8a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-8Z" />
+              </svg>
+              <span>CRECI 1907</span>
+            </div>
+            <div class="broker-contact-row">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M6.6 10.8c1.6 3.1 3.5 5 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.3 1.3.4 2.6.6 4 .6.7 0 1.2.5 1.2 1.2v3.5c0 .7-.5 1.2-1.2 1.2C10.7 21.4 2.6 13.3 2.6 3.4c0-.7.5-1.2 1.2-1.2h3.5c.7 0 1.2.5 1.2 1.2 0 1.4.2 2.7.6 4 .1.4 0 .9-.3 1.2l-2.2 2.2Z" />
+              </svg>
+              <span>+55 63 9933-7030</span>
+            </div>
+          </div>
+
+          <a class="broker-whatsapp" href="https://wa.me/5563999337030?text=Ol%C3%A1%2C%20Josineide%21%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20voc%C3%AA%20sobre%20compra%20ou%20venda%20de%20im%C3%B3vel.">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="" />
+            <span>Fale comigo no WhatsApp</span>
+          </a>
+        </article>
+
+        <div class="testimonials">
+          <h3>Depoimentos</h3>
+          <div class="testimonial-list">
+            <article class="testimonial-card">
+              <div class="testimonial-author">
+                <svg class="avatar-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" fill="#c9c9c9" />
+                  <circle cx="12" cy="9" r="4" fill="#fff" />
+                  <path d="M5.5 19a7 7 0 0 1 13 0" fill="#fff" />
+                </svg>
+                <span>Nome Sobrenome</span>
+              </div>
+              <p>“ Comentário nesse trecho de texto texto texto texto texto texto texto texto texto texto texto texto ”</p>
+            </article>
+
+            <article class="testimonial-card">
+              <div class="testimonial-author">
+                <svg class="avatar-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" fill="#c9c9c9" />
+                  <circle cx="12" cy="9" r="4" fill="#fff" />
+                  <path d="M5.5 19a7 7 0 0 1 13 0" fill="#fff" />
+                </svg>
+                <span>Nome Sobrenome</span>
+              </div>
+              <p>“ Comentário nesse trecho de texto texto texto texto texto texto texto texto texto texto texto texto ”</p>
+            </article>
+
+            <article class="testimonial-card">
+              <div class="testimonial-author">
+                <svg class="avatar-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" fill="#c9c9c9" />
+                  <circle cx="12" cy="9" r="4" fill="#fff" />
+                  <path d="M5.5 19a7 7 0 0 1 13 0" fill="#fff" />
+                </svg>
+                <span>Nome Sobrenome</span>
+              </div>
+              <p>“ Comentário nesse trecho de texto texto texto texto texto texto texto texto texto texto texto texto ”</p>
+            </article>
+
+            <article class="testimonial-card">
+              <div class="testimonial-author">
+                <svg class="avatar-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" fill="#c9c9c9" />
+                  <circle cx="12" cy="9" r="4" fill="#fff" />
+                  <path d="M5.5 19a7 7 0 0 1 13 0" fill="#fff" />
+                </svg>
+                <span>Nome Sobrenome</span>
+              </div>
+              <p>“ Comentário nesse trecho de texto texto texto texto texto texto texto texto texto texto texto texto ”</p>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <img class="footer-logo" src="https://josineidealvescorretora.wordpress.com/wp-content/uploads/2026/05/josineide-alves.png" alt="Josineide Alves Corretora de Imóveis" />
+
+          <div class="footer-info">
+            <div class="footer-contact-row">
+              <span class="footer-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3 11.5 12 4l9 7.5v8a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-8Z" />
+                </svg>
+              </span>
+              <span>CRECI 1907</span>
+            </div>
+            <div class="footer-contact-row">
+              <span class="footer-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M6.6 10.8c1.6 3.1 3.5 5 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.3 1.3.4 2.6.6 4 .6.7 0 1.2.5 1.2 1.2v3.5c0 .7-.5 1.2-1.2 1.2C10.7 21.4 2.6 13.3 2.6 3.4c0-.7.5-1.2 1.2-1.2h3.5c.7 0 1.2.5 1.2 1.2 0 1.4.2 2.7.6 4 .1.4 0 .9-.3 1.2l-2.2 2.2Z" />
+                </svg>
+              </span>
+              <span>+55 63 9933-7030</span>
+            </div>
+            <div class="footer-contact-row">
+              <span class="footer-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="4" width="16" height="16" rx="5" />
+                  <circle cx="12" cy="12" r="3.2" />
+                  <circle cx="17" cy="7" r="0.8" fill="currentColor" stroke="none" />
+                </svg>
+              </span>
+              <span>@josineidealvescorretora</span>
+            </div>
+            <nav class="footer-links" aria-label="Links do rodapé">
+              <a href="#inicio">Início</a>
+              <a href="#imoveis">Imóveis</a>
+              <a href="#sobre">Sobre</a>
+            </nav>
+          </div>
+        </div>
+      </footer>
+    </section>
+
+    <div class="property-overlay" id="propertyOverlay" aria-hidden="true">
+      <article class="property-modal" role="dialog" aria-modal="true" aria-labelledby="propertyModalTitle">
+        <button class="modal-close" type="button" aria-label="Fechar detalhes" data-close-property>&times;</button>
+
+        <div class="carousel">
+          <button class="carousel-arrow prev" type="button" aria-label="Imagem anterior" data-carousel-prev>‹</button>
+          <div class="carousel-track" id="propertyCarousel">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=700&q=80" alt="Cozinha integrada" />
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=80" alt="Fachada da casa" />
+            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=700&q=80" alt="Sala com escada" />
+            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=700&q=80" alt="Entrada da casa" />
+          </div>
+          <button class="carousel-arrow next" type="button" aria-label="Próxima imagem" data-carousel-next>›</button>
+        </div>
+
+        <div class="modal-scroll">
+          <h3 id="propertyModalTitle">Casa de Condomínio à Venda com 4 quartos, 4 banheiros e 333m² por R$ 4.500.000</h3>
+
+          <div class="modal-location">
+            <img src="https://josineidealvescorretora.wordpress.com/wp-content/uploads/2026/05/site-josineide-alves-desktop-3.png?w=734&amp;allow_lossy=1" alt="" />
+            <span>Mirante do Lago, Palmas - TO</span>
+          </div>
+
+          <section class="detail-group" aria-label="Cômodos e espaços">
+            <h4>Cômodos e espaços</h4>
+            <div class="detail-list">
+              <div class="detail-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b6b6b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 11h18v8'/%3E%3Cpath d='M3 19V7a2 2 0 0 1 2-2h5a3 3 0 0 1 3 3v3'/%3E%3Cpath d='M13 11V8a3 3 0 0 1 3-3h3a2 2 0 0 1 2 2v4'/%3E%3Cpath d='M3 15h18'/%3E%3C/svg%3E" alt="" />
+                <div>
+                  <strong>4 Quartos</strong>
+                  <span>Total de dormitórios, incluindo as suítes</span>
+                </div>
+              </div>
+              <div class="detail-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b6b6b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 10h14v3a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5v-3Z'/%3E%3Cpath d='M7 10V6a2 2 0 0 1 4 0v1'/%3E%3Cpath d='M4 21h16'/%3E%3Cpath d='M8 18l-1 3'/%3E%3Cpath d='M16 18l1 3'/%3E%3C/svg%3E" alt="" />
+                <div>
+                  <strong>4 Banheiros</strong>
+                  <span>Inclui banheiros, lavabos, suítes e demi-suítes</span>
+                </div>
+              </div>
+              <div class="detail-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b6b6b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 20V4l5 3 5-3 6 4v12'/%3E%3Cpath d='M8 19l3-7 3 7'/%3E%3Cpath d='M9.5 16h3'/%3E%3C/svg%3E" alt="" />
+                <div>
+                  <strong>4 Suítes</strong>
+                  <span>Total de suítes</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="detail-group" aria-label="Dimensões e metragens">
+            <h4>Dimensões e metragens</h4>
+            <div class="detail-list">
+              <div class="detail-item">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b6b6b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 14l6-6 4 4 6-6'/%3E%3Cpath d='M14 6h6v6'/%3E%3Ccircle cx='5' cy='15' r='2'/%3E%3Ccircle cx='19' cy='5' r='2'/%3E%3C/svg%3E" alt="" />
+                <div>
+                  <strong>333,00 m² área construída</strong>
+                  <span>É a soma da área total de todos os pavimentos</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="modal-description">
+            <h4>Sobrado no Mirante do Lago - 4 suítes, piscina aquecida e vista lago</h4>
+            <strong>Sobrado de Luxo - 333m² construídos em lote de 450m² - 4 Suítes, Piscina Aquecida e Vista Privilegiada</strong>
+            <p>
+              Descubra o equilíbrio perfeito entre elegância, conforto e localização privilegiada neste impressionante sobrado de 333m², implantado em um terreno amplo de 450m². O projeto arquitetônico moderno valoriza linhas retas, fachada imponente com pele de vidro e ambientes amplos banhados por luz natural.
+            </p>
+          </section>
+        </div>
+
+        <div class="modal-cta">
+          <div class="modal-price">R$ 4.500.000</div>
+          <a class="interest-button" href="https://wa.me/5563999337030?text=Ol%C3%A1%2C%20Josineide%21%20Tenho%20interesse%20neste%20im%C3%B3vel%20anunciado%20no%20site.%20Pode%20me%20enviar%20mais%20informa%C3%A7%C3%B5es%3F"><span>Tenho interesse no imóvel</span></a>
+        </div>
+      </article>
+    </div>
+
+    <div class="photo-viewer" id="photoViewer" aria-hidden="true">
+      <button class="photo-close" type="button" aria-label="Fechar foto ampliada" data-close-photo>&times;</button>
+      <button class="photo-arrow prev" type="button" aria-label="Foto anterior" data-photo-prev>‹</button>
+      <img id="photoViewerImage" src="" alt="Foto ampliada do imóvel" />
+      <button class="photo-arrow next" type="button" aria-label="Próxima foto" data-photo-next>›</button>
+    </div>
+
+    <a class="floating-whatsapp" href="https://wa.me/5563999337030?text=Ol%C3%A1%2C%20Josineide%21%20Vim%20pelo%20site%20e%20gostaria%20de%20atendimento%20imobili%C3%A1rio%20em%20Palmas%20e%20regi%C3%A3o." aria-label="Fale no WhatsApp">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="" />
+    </a>
+
+    <script>
+      const header = document.querySelector("#siteHeader");
+      const toggle = document.querySelector(".menu-toggle");
+      const menuLinks = document.querySelectorAll(".mobile-menu a");
+      const propertyShell = document.querySelector("#propertyShell");
+      const propertyTabs = document.querySelectorAll("[data-tab]");
+      const filterChips = document.querySelectorAll(".filter-chip");
+      const propertyOverlay = document.querySelector("#propertyOverlay");
+      const openPropertyButtons = document.querySelectorAll("[data-open-property]");
+      const closePropertyButtons = document.querySelectorAll("[data-close-property]");
+      const carousel = document.querySelector("#propertyCarousel");
+      const carouselPrev = document.querySelector("[data-carousel-prev]");
+      const carouselNext = document.querySelector("[data-carousel-next]");
+      const carouselImages = Array.from(document.querySelectorAll("#propertyCarousel img"));
+      const photoViewer = document.querySelector("#photoViewer");
+      const photoViewerImage = document.querySelector("#photoViewerImage");
+      const closePhotoButton = document.querySelector("[data-close-photo]");
+      const photoPrev = document.querySelector("[data-photo-prev]");
+      const photoNext = document.querySelector("[data-photo-next]");
+      let activePhotoIndex = 0;
+
+
+      const revealTargets = document.querySelectorAll(
+        ".properties-heading, .property-card, .about-header, .broker-card, .testimonial-card, .site-footer"
+      );
+      revealTargets.forEach((element, index) => {
+        element.classList.add("reveal");
+        element.style.setProperty("--delay", `${Math.min(index % 6, 5) * 70}ms`);
+      });
+
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.16, rootMargin: "0px 0px -40px 0px" }
+      );
+
+      revealTargets.forEach((element) => revealObserver.observe(element));
+
+      function setHeaderState() {
+        header.classList.toggle("is-scrolled", window.scrollY > 18);
+      }
+
+      setHeaderState();
+      window.addEventListener("scroll", setHeaderState, { passive: true });
+
+
+      function setMenu(open) {
+        header.classList.toggle("is-open", open);
+        toggle.setAttribute("aria-expanded", String(open));
+        toggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+      }
+
+      toggle.addEventListener("click", () => {
+        setMenu(!header.classList.contains("is-open"));
+      });
+
+      menuLinks.forEach((link) => {
+        link.addEventListener("click", () => setMenu(false));
+      });
+
+      propertyTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const isCategory = tab.dataset.tab === "category";
+
+          propertyShell.classList.toggle("is-filter-mode", isCategory);
+          propertyTabs.forEach((item) => item.classList.toggle("is-active", item === tab));
+        });
+      });
+
+      filterChips.forEach((chip) => {
+        chip.addEventListener("click", () => {
+          chip.classList.toggle("is-selected");
+        });
+      });
+
+      function setPropertyModal(open) {
+        propertyOverlay.classList.toggle("is-open", open);
+        propertyOverlay.setAttribute("aria-hidden", String(!open));
+        document.body.classList.toggle("modal-open", open);
+        if (!open) {
+          setPhotoViewer(false);
+        }
+      }
+
+      openPropertyButtons.forEach((button) => {
+        button.addEventListener("click", () => setPropertyModal(true));
+      });
+
+      closePropertyButtons.forEach((button) => {
+        button.addEventListener("click", () => setPropertyModal(false));
+      });
+
+      propertyOverlay.addEventListener("click", (event) => {
+        if (event.target === propertyOverlay) {
+          setPropertyModal(false);
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && photoViewer.classList.contains("is-open")) {
+          setPhotoViewer(false);
+          return;
+        }
+
+        if (event.key === "Escape") {
+          setPropertyModal(false);
+        }
+      });
+
+      function moveCarousel(direction) {
+        const slideWidth = carousel.clientWidth / 3;
+        carousel.scrollBy({ left: slideWidth * direction, behavior: "smooth" });
+      }
+
+      carouselPrev.addEventListener("click", () => moveCarousel(-1));
+      carouselNext.addEventListener("click", () => moveCarousel(1));
+
+      function showPhoto(index) {
+        activePhotoIndex = (index + carouselImages.length) % carouselImages.length;
+        const selectedPhoto = carouselImages[activePhotoIndex];
+        photoViewerImage.src = selectedPhoto.src;
+        photoViewerImage.alt = selectedPhoto.alt || "Foto ampliada do imóvel";
+      }
+
+      function setPhotoViewer(open, index = activePhotoIndex) {
+        if (open) {
+          showPhoto(index);
+        }
+
+        photoViewer.classList.toggle("is-open", open);
+        photoViewer.setAttribute("aria-hidden", String(!open));
+      }
+
+      carouselImages.forEach((image, index) => {
+        image.addEventListener("click", () => setPhotoViewer(true, index));
+      });
+
+      closePhotoButton.addEventListener("click", () => setPhotoViewer(false));
+      photoPrev.addEventListener("click", () => showPhoto(activePhotoIndex - 1));
+      photoNext.addEventListener("click", () => showPhoto(activePhotoIndex + 1));
+
+      photoViewer.addEventListener("click", (event) => {
+        if (event.target === photoViewer) {
+          setPhotoViewer(false);
+        }
+      });
+    </script>
+  </body>
+</html>
