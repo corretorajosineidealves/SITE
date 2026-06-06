@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
       :root {
         --brown: #3e2b1c;
@@ -1231,10 +1233,6 @@
           gap: 26px;
         }
 
-        .property-card:nth-child(n + 3) {
-          display: none;
-        }
-
         .property-card {
           border-radius: 9px;
         }
@@ -2038,6 +2036,81 @@
         }
       }
 
+
+
+      .property-card {
+        position: relative;
+      }
+
+      .property-card .selo {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        z-index: 2;
+        display: inline-flex;
+        align-items: center;
+        min-height: 28px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(62, 43, 28, 0.88);
+        color: #fff4df;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1.6px;
+        text-transform: uppercase;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+        backdrop-filter: blur(10px);
+      }
+
+      .property-grid-message {
+        grid-column: 1 / -1;
+        min-height: 220px;
+        display: grid;
+        place-items: center;
+        padding: 34px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.72);
+        color: var(--text);
+        text-align: center;
+        font-weight: 600;
+        box-shadow: 0 14px 32px rgba(38, 28, 18, 0.12);
+      }
+
+      .property-card-location .location-pin-icon,
+      .modal-location .location-pin-icon {
+        width: 18px;
+        height: 18px;
+        color: var(--accent);
+      }
+
+      .modal-location .location-pin-icon {
+        width: 22px;
+        height: 22px;
+      }
+
+      .property-card-price {
+        margin: -10px 0 20px;
+        color: var(--brown);
+        font-size: 18px;
+        font-weight: 800;
+      }
+
+      @media (max-width: 767px) {
+        .property-card .selo {
+          top: 9px;
+          left: 9px;
+          min-height: 22px;
+          padding: 5px 9px;
+          font-size: 8px;
+          letter-spacing: 1px;
+        }
+
+        .property-card-price {
+          margin: -8px 0 14px;
+          font-size: 14px;
+        }
+      }
+
     </style>
   </head>
   <body>
@@ -2126,117 +2199,17 @@
           <div class="category-filters" aria-label="Categorias de imóveis">
             <p class="filter-label">Filtros:</p>
             <div class="filter-options">
-              <button class="filter-chip" type="button">Casas</button>
-              <button class="filter-chip is-selected" type="button">Apartamentos</button>
-              <button class="filter-chip" type="button">Lotes</button>
-              <button class="filter-chip" type="button">Chácaras</button>
-              <button class="filter-chip" type="button">Outros</button>
+              <button class="filter-chip" type="button" data-category="Casas">Casas</button>
+              <button class="filter-chip" type="button" data-category="Apartamentos">Apartamentos</button>
+              <button class="filter-chip" type="button" data-category="Lotes">Lotes</button>
+              <button class="filter-chip" type="button" data-category="Chácaras">Chácaras</button>
+              <button class="filter-chip" type="button" data-category="Outros">Outros</button>
             </div>
           </div>
 
-          <div class="property-grid">
-            <article class="property-card">
-              <img class="property-card-photo" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80" alt="Casa de condomínio" />
-              <div class="property-card-body">
-                <h3>Casa de Condomínio à venda com 4 quartos, 345m²</h3>
-                <div class="property-card-location">
-                  <img src="https://josineidealvescorretora.wordpress.com/wp-content/uploads/2026/05/site-josineide-alves-desktop-3.png?w=734&amp;allow_lossy=1" alt="" />
-                  <span>Mirante do Lago, Palmas - TO</span>
-                </div>
-                <div class="property-card-meta">
-                  <span>4 Quartos</span>
-                  <span>4 Banheiros</span>
-                  <span>345m²</span>
-                </div>
-                <button class="more-button" type="button" data-open-property>Mais informações</button>
-              </div>
-            </article>
-
-            <article class="property-card">
-              <img class="property-card-photo" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80" alt="Casa moderna" />
-              <div class="property-card-body">
-                <h3>Casa de Condomínio à venda com 4 quartos, 345m²</h3>
-                <div class="property-card-location">
-                  <img src="https://josineidealvescorretora.wordpress.com/wp-content/uploads/2026/05/site-josineide-alves-desktop-3.png?w=734&amp;allow_lossy=1" alt="" />
-                  <span>Mirante do Lago, Palmas - TO</span>
-                </div>
-                <div class="property-card-meta">
-                  <span>4 Quartos</span>
-                  <span>4 Banheiros</span>
-                  <span>345m²</span>
-                </div>
-                <button class="more-button" type="button" data-open-property>Mais informações</button>
-              </div>
-            </article>
-
-            <article class="property-card">
-              <img class="property-card-photo" src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80" alt="Fachada de casa" />
-              <div class="property-card-body">
-                <h3>Casa de Condomínio à venda com 4 quartos, 345m²</h3>
-                <div class="property-card-location">
-                  <img src="https://josineidealvescorretora.wordpress.com/wp-content/uploads/2026/05/site-josineide-alves-desktop-3.png?w=734&amp;allow_lossy=1" alt="" />
-                  <span>Mirante do Lago, Palmas - TO</span>
-                </div>
-                <div class="property-card-meta">
-                  <span>4 Quartos</span>
-                  <span>4 Banheiros</span>
-                  <span>345m²</span>
-                </div>
-                <button class="more-button" type="button" data-open-property>Mais informações</button>
-              </div>
-            </article>
-
-            <article class="property-card">
-              <img class="property-card-photo" src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=900&q=80" alt="Casa com jardim" />
-              <div class="property-card-body">
-                <h3>Casa de Condomínio à venda com 4 quartos, 345m²</h3>
-                <div class="property-card-location">
-                  <img src="https://josineidealvescorretora.wordpress.com/wp-content/uploads/2026/05/site-josineide-alves-desktop-3.png?w=734&amp;allow_lossy=1" alt="" />
-                  <span>Mirante do Lago, Palmas - TO</span>
-                </div>
-                <div class="property-card-meta">
-                  <span>4 Quartos</span>
-                  <span>4 Banheiros</span>
-                  <span>345m²</span>
-                </div>
-                <button class="more-button" type="button" data-open-property>Mais informações</button>
-              </div>
-            </article>
-
-            <article class="property-card">
-              <img class="property-card-photo" src="https://images.unsplash.com/photo-1600607687644-c7171b42498b?auto=format&fit=crop&w=900&q=80" alt="Interior de casa" />
-              <div class="property-card-body">
-                <h3>Casa de Condomínio à venda com 4 quartos, 345m²</h3>
-                <div class="property-card-location">
-                  <img src="https://josineidealvescorretora.wordpress.com/wp-content/uploads/2026/05/site-josineide-alves-desktop-3.png?w=734&amp;allow_lossy=1" alt="" />
-                  <span>Mirante do Lago, Palmas - TO</span>
-                </div>
-                <div class="property-card-meta">
-                  <span>4 Quartos</span>
-                  <span>4 Banheiros</span>
-                  <span>345m²</span>
-                </div>
-                <button class="more-button" type="button" data-open-property>Mais informações</button>
-              </div>
-            </article>
-
-            <article class="property-card">
-              <img class="property-card-photo" src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=900&q=80" alt="Casa ampla" />
-              <div class="property-card-body">
-                <h3>Casa de Condomínio à venda com 4 quartos, 345m²</h3>
-                <div class="property-card-location">
-                  <img src="https://josineidealvescorretora.wordpress.com/wp-content/uploads/2026/05/site-josineide-alves-desktop-3.png?w=734&amp;allow_lossy=1" alt="" />
-                  <span>Mirante do Lago, Palmas - TO</span>
-                </div>
-                <div class="property-card-meta">
-                  <span>4 Quartos</span>
-                  <span>4 Banheiros</span>
-                  <span>345m²</span>
-                </div>
-                <button class="more-button" type="button" data-open-property>Mais informações</button>
-              </div>
-            </article>
-          </div>
+          <div class="property-grid" id="lista-imoveis" aria-live="polite">
+            <div class="property-grid-message">Carregando imóveis...</div>
+          </div>          </div>
         </div>
       </div>
     </section>
@@ -2405,84 +2378,7 @@
       </footer>
     </section>
 
-    <div class="property-overlay" id="propertyOverlay" aria-hidden="true">
-      <article class="property-modal" role="dialog" aria-modal="true" aria-labelledby="propertyModalTitle">
-        <button class="modal-close" type="button" aria-label="Fechar detalhes" data-close-property>&times;</button>
-
-        <div class="carousel">
-          <button class="carousel-arrow prev" type="button" aria-label="Imagem anterior" data-carousel-prev>‹</button>
-          <div class="carousel-track" id="propertyCarousel">
-            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=700&q=80" alt="Cozinha integrada" />
-            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=80" alt="Fachada da casa" />
-            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=700&q=80" alt="Sala com escada" />
-            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=700&q=80" alt="Entrada da casa" />
-          </div>
-          <button class="carousel-arrow next" type="button" aria-label="Próxima imagem" data-carousel-next>›</button>
-        </div>
-
-        <div class="modal-scroll">
-          <h3 id="propertyModalTitle">Casa de Condomínio à Venda com 4 quartos, 4 banheiros e 333m² por R$ 4.500.000</h3>
-
-          <div class="modal-location">
-            <img src="https://josineidealvescorretora.wordpress.com/wp-content/uploads/2026/05/site-josineide-alves-desktop-3.png?w=734&amp;allow_lossy=1" alt="" />
-            <span>Mirante do Lago, Palmas - TO</span>
-          </div>
-
-          <section class="detail-group" aria-label="Cômodos e espaços">
-            <h4>Cômodos e espaços</h4>
-            <div class="detail-list">
-              <div class="detail-item">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b6b6b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 11h18v8'/%3E%3Cpath d='M3 19V7a2 2 0 0 1 2-2h5a3 3 0 0 1 3 3v3'/%3E%3Cpath d='M13 11V8a3 3 0 0 1 3-3h3a2 2 0 0 1 2 2v4'/%3E%3Cpath d='M3 15h18'/%3E%3C/svg%3E" alt="" />
-                <div>
-                  <strong>4 Quartos</strong>
-                  <span>Total de dormitórios, incluindo as suítes</span>
-                </div>
-              </div>
-              <div class="detail-item">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b6b6b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 10h14v3a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5v-3Z'/%3E%3Cpath d='M7 10V6a2 2 0 0 1 4 0v1'/%3E%3Cpath d='M4 21h16'/%3E%3Cpath d='M8 18l-1 3'/%3E%3Cpath d='M16 18l1 3'/%3E%3C/svg%3E" alt="" />
-                <div>
-                  <strong>4 Banheiros</strong>
-                  <span>Inclui banheiros, lavabos, suítes e demi-suítes</span>
-                </div>
-              </div>
-              <div class="detail-item">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b6b6b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 20V4l5 3 5-3 6 4v12'/%3E%3Cpath d='M8 19l3-7 3 7'/%3E%3Cpath d='M9.5 16h3'/%3E%3C/svg%3E" alt="" />
-                <div>
-                  <strong>4 Suítes</strong>
-                  <span>Total de suítes</span>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section class="detail-group" aria-label="Dimensões e metragens">
-            <h4>Dimensões e metragens</h4>
-            <div class="detail-list">
-              <div class="detail-item">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b6b6b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 14l6-6 4 4 6-6'/%3E%3Cpath d='M14 6h6v6'/%3E%3Ccircle cx='5' cy='15' r='2'/%3E%3Ccircle cx='19' cy='5' r='2'/%3E%3C/svg%3E" alt="" />
-                <div>
-                  <strong>333,00 m² área construída</strong>
-                  <span>É a soma da área total de todos os pavimentos</span>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section class="modal-description">
-            <h4>Sobrado no Mirante do Lago - 4 suítes, piscina aquecida e vista lago</h4>
-            <strong>Sobrado de Luxo - 333m² construídos em lote de 450m² - 4 Suítes, Piscina Aquecida e Vista Privilegiada</strong>
-            <p>
-              Descubra o equilíbrio perfeito entre elegância, conforto e localização privilegiada neste impressionante sobrado de 333m², implantado em um terreno amplo de 450m². O projeto arquitetônico moderno valoriza linhas retas, fachada imponente com pele de vidro e ambientes amplos banhados por luz natural.
-            </p>
-          </section>
-        </div>
-
-        <div class="modal-cta">
-          <div class="modal-price">R$ 4.500.000</div>
-          <a class="interest-button" href="https://wa.me/5563999337030?text=Ol%C3%A1%2C%20Josineide%21%20Tenho%20interesse%20neste%20im%C3%B3vel%20anunciado%20no%20site.%20Pode%20me%20enviar%20mais%20informa%C3%A7%C3%B5es%3F"><span>Tenho interesse no imóvel</span></a>
-        </div>
-      </article>
-    </div>
+    <div class="property-overlay" id="propertyOverlay" aria-hidden="true"></div>
 
     <div class="photo-viewer" id="photoViewer" aria-hidden="true">
       <button class="photo-close" type="button" aria-label="Fechar foto ampliada" data-close-photo>&times;</button>
@@ -2496,56 +2392,239 @@
     </a>
 
     <script>
+      const SUPABASE_URL = "https://jwkcldjxrhytvndguifo.supabase.co";
+      const SUPABASE_ANON_KEY = "sb_publishable_9OAhh2faB-1zsVHn6qdr4A_i8p1Kj1q";
+      const WHATSAPP_NUMBER = "5563999337030";
+      const supabaseClient = window.supabase?.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
       const header = document.querySelector("#siteHeader");
       const toggle = document.querySelector(".menu-toggle");
       const menuLinks = document.querySelectorAll(".mobile-menu a");
       const propertyShell = document.querySelector("#propertyShell");
       const propertyTabs = document.querySelectorAll("[data-tab]");
       const filterChips = document.querySelectorAll(".filter-chip");
+      const propertyGrid = document.querySelector("#lista-imoveis");
       const propertyOverlay = document.querySelector("#propertyOverlay");
-      const openPropertyButtons = document.querySelectorAll("[data-open-property]");
-      const closePropertyButtons = document.querySelectorAll("[data-close-property]");
-      const carousel = document.querySelector("#propertyCarousel");
-      const carouselPrev = document.querySelector("[data-carousel-prev]");
-      const carouselNext = document.querySelector("[data-carousel-next]");
-      const carouselImages = Array.from(document.querySelectorAll("#propertyCarousel img"));
       const photoViewer = document.querySelector("#photoViewer");
       const photoViewerImage = document.querySelector("#photoViewerImage");
       const closePhotoButton = document.querySelector("[data-close-photo]");
       const photoPrev = document.querySelector("[data-photo-prev]");
       const photoNext = document.querySelector("[data-photo-next]");
       let activePhotoIndex = 0;
+      let activeGallery = [];
+      let propertyCache = [];
+      let activeCategory = "todos";
 
+      function escapeHTML(value = "") {
+        return String(value).replace(/[&<>'"]/g, (char) => ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          "'": "&#039;",
+          '"': "&quot;",
+        }[char]));
+      }
 
-      const revealTargets = document.querySelectorAll(
-        ".properties-heading, .property-card, .about-header, .broker-card, .testimonial-card, .site-footer"
-      );
-      revealTargets.forEach((element, index) => {
-        element.classList.add("reveal");
-        element.style.setProperty("--delay", `${Math.min(index % 6, 5) * 70}ms`);
-      });
+      function brl(value) {
+        if (value === null || value === undefined || value === "") return "Consulte";
+        const number = Number(value);
+        if (Number.isNaN(number)) return "Consulte";
+        return number.toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+          maximumFractionDigits: 0,
+        });
+      }
 
-      const revealObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-              revealObserver.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.16, rootMargin: "0px 0px -40px 0px" }
-      );
+      function locationText(property) {
+        return [property.neighborhood, property.city, property.state].filter(Boolean).join(", ") || property.location || "Palmas - TO";
+      }
 
-      revealTargets.forEach((element) => revealObserver.observe(element));
+      function specsText(property) {
+        return `${property.bedrooms ?? "-"} Quartos · ${property.bathrooms ?? "-"} Banheiros · ${property.area_m2 ?? "-"}m²`;
+      }
+
+      function whatsappLink(property) {
+        if (property.whatsapp_link) return property.whatsapp_link;
+        const message = `Olá, Josineide! Tenho interesse no imóvel "${property.title || "anunciado no site"}". Pode me enviar mais informações?`;
+        return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      }
+
+      function pinIcon() {
+        return `
+          <svg class="location-pin-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z" />
+          </svg>`;
+      }
+
+      function normalizeCategory(value = "") {
+        return String(value)
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/s$/i, "")
+          .trim();
+      }
+
+      async function carregarImoveis(category = "todos") {
+        if (!supabaseClient) {
+          propertyGrid.innerHTML = `<div class="property-grid-message">Não foi possível carregar o Supabase. Verifique se o script do Supabase está carregando no GitHub Pages.</div>`;
+          return [];
+        }
+
+        const { data, error } = await supabaseClient
+          .from("properties")
+          .select("*")
+          .eq("is_published", true)
+          .order("created_at", { ascending: false });
+
+        if (error) {
+          console.error("Erro ao buscar imóveis no Supabase:", error);
+          propertyGrid.innerHTML = `<div class="property-grid-message">Não foi possível carregar os imóveis. Verifique no Supabase se a tabela <strong>properties</strong> permite leitura pública para imóveis publicados.</div>`;
+          return [];
+        }
+
+        let items = Array.isArray(data) ? data : [];
+
+        if (category && category !== "todos") {
+          const selected = normalizeCategory(category);
+          items = items.filter((item) => normalizeCategory(item.category) === selected);
+        }
+
+        return items.sort((a, b) => {
+          const ad = a.classification === "Destaque" ? 0 : 1;
+          const bd = b.classification === "Destaque" ? 0 : 1;
+          return ad - bd;
+        });
+      }
+
+      function cardHTML(property) {
+        const title = escapeHTML(property.title || "Imóvel disponível");
+        const image = property.main_image_url ? escapeHTML(property.main_image_url) : "";
+        const imageHTML = image
+          ? `<img class="property-card-photo" src="${image}" alt="${title}" loading="lazy" />`
+          : `<div class="property-card-photo property-card-photo-placeholder">Imagem não cadastrada</div>`;
+        const location = escapeHTML(locationText(property));
+        const selo = ["Destaque", "Lançamento", "Oportunidade", "Alto padrão"].includes(property.classification)
+          ? `<span class="selo">${escapeHTML(property.classification)}</span>`
+          : "";
+
+        return `
+          <article class="property-card reveal is-visible" data-property-id="${escapeHTML(property.id)}">
+            ${selo}
+            ${imageHTML}
+            <div class="property-card-body">
+              <h3>${title}</h3>
+              <div class="property-card-location">
+                ${pinIcon()}
+                <span>${location}</span>
+              </div>
+              <div class="property-card-meta">
+                <span>${escapeHTML(property.bedrooms ?? "-")} Quartos</span>
+                <span>${escapeHTML(property.bathrooms ?? "-")} Banheiros</span>
+                <span>${escapeHTML(property.area_m2 ?? "-")}m²</span>
+              </div>
+              <div class="property-card-price">${brl(property.price)}</div>
+              <button class="more-button" type="button" data-open-property="${escapeHTML(property.id)}">Mais informações</button>
+            </div>
+          </article>`;
+      }
+
+      async function renderizarImoveis(category = "todos") {
+        activeCategory = category;
+        window.__categoriaAtiva = category;
+        propertyGrid.innerHTML = `<div class="property-grid-message">Carregando imóveis...</div>`;
+        propertyCache = await carregarImoveis(category);
+
+        if (!propertyCache.length) {
+          propertyGrid.innerHTML = `<div class="property-grid-message">Nenhum imóvel publicado foi encontrado nesta categoria. Cadastre/publice imóveis no painel da Lovable para aparecerem aqui.</div>`;
+          return;
+        }
+
+        propertyGrid.innerHTML = propertyCache.map(cardHTML).join("");
+      }
+
+      function detailItem(label, value, helper) {
+        if (value === null || value === undefined || value === "") return "";
+        return `
+          <div class="detail-item">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b6b6b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 20V4l5 3 5-3 6 4v12'/%3E%3Cpath d='M8 19l3-7 3 7'/%3E%3Cpath d='M9.5 16h3'/%3E%3C/svg%3E" alt="" />
+            <div>
+              <strong>${escapeHTML(value)} ${escapeHTML(label)}</strong>
+              <span>${escapeHTML(helper)}</span>
+            </div>
+          </div>`;
+      }
+
+      function openPropertyModal(id) {
+        const property = propertyCache.find((item) => String(item.id) === String(id));
+        if (!property) return;
+
+        activeGallery = Array.isArray(property.gallery_images) && property.gallery_images.length
+          ? property.gallery_images
+          : [property.main_image_url].filter(Boolean);
+
+        const galleryHTML = activeGallery.map((url, index) => `
+          <img src="${escapeHTML(url)}" alt="Foto ${index + 1} do imóvel" data-photo-index="${index}" loading="lazy" />
+        `).join("");
+
+        propertyOverlay.innerHTML = `
+          <article class="property-modal" role="dialog" aria-modal="true" aria-labelledby="propertyModalTitle">
+            <button class="modal-close" type="button" aria-label="Fechar detalhes" data-close-property>&times;</button>
+
+            <div class="carousel">
+              <button class="carousel-arrow prev" type="button" aria-label="Imagem anterior" data-carousel-prev>‹</button>
+              <div class="carousel-track" id="propertyCarousel">${galleryHTML}</div>
+              <button class="carousel-arrow next" type="button" aria-label="Próxima imagem" data-carousel-next>›</button>
+            </div>
+
+            <div class="modal-scroll">
+              <h3 id="propertyModalTitle">${escapeHTML(property.title || "Imóvel disponível")}</h3>
+
+              <div class="modal-location">
+                ${pinIcon()}
+                <span>${escapeHTML(locationText(property))}</span>
+              </div>
+
+              <section class="detail-group" aria-label="Cômodos e espaços">
+                <h4>Cômodos e espaços</h4>
+                <div class="detail-list">
+                  ${detailItem("Quartos", property.bedrooms, "Total de dormitórios, incluindo as suítes")}
+                  ${detailItem("Banheiros", property.bathrooms, "Inclui banheiros, lavabos, suítes e demi-suítes")}
+                  ${detailItem("Suítes", property.suites, "Total de suítes")}
+                  ${detailItem("Vagas", property.parking_spaces, "Vagas de garagem")}
+                </div>
+              </section>
+
+              <section class="detail-group" aria-label="Dimensões e metragens">
+                <h4>Dimensões e metragens</h4>
+                <div class="detail-list">
+                  ${detailItem("m² de área", property.area_m2, "Área total informada do imóvel")}
+                  ${detailItem("m² construídos", property.built_area_m2, "Área construída")}
+                  ${detailItem("m² de terreno", property.land_area_m2, "Metragem do terreno")}
+                </div>
+              </section>
+
+              <section class="modal-description">
+                <h4>${escapeHTML(property.short_description || property.title || "Descrição do imóvel")}</h4>
+                <strong>${escapeHTML(property.status || property.classification || "Imóvel disponível")}</strong>
+                <p>${escapeHTML(property.full_description || property.short_description || "Entre em contato para receber mais informações sobre este imóvel.")}</p>
+              </section>
+            </div>
+
+            <div class="modal-cta">
+              <div class="modal-price">${brl(property.price)}</div>
+              <a class="interest-button" href="${escapeHTML(whatsappLink(property))}" target="_blank" rel="noopener"><span>Tenho interesse no imóvel</span></a>
+            </div>
+          </article>`;
+
+        setPropertyModal(true);
+        wireModalControls();
+      }
 
       function setHeaderState() {
         header.classList.toggle("is-scrolled", window.scrollY > 18);
       }
-
-      setHeaderState();
-      window.addEventListener("scroll", setHeaderState, { passive: true });
-
 
       function setMenu(open) {
         header.classList.toggle("is-open", open);
@@ -2553,50 +2632,105 @@
         toggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
       }
 
-      toggle.addEventListener("click", () => {
-        setMenu(!header.classList.contains("is-open"));
-      });
+      function setPropertyModal(open) {
+        propertyOverlay.classList.toggle("is-open", open);
+        propertyOverlay.setAttribute("aria-hidden", String(!open));
+        document.body.classList.toggle("modal-open", open);
+        if (!open) setPhotoViewer(false);
+      }
 
-      menuLinks.forEach((link) => {
-        link.addEventListener("click", () => setMenu(false));
-      });
+      function moveCarousel(direction) {
+        const carousel = document.querySelector("#propertyCarousel");
+        if (!carousel) return;
+        const slideWidth = carousel.clientWidth / 3;
+        carousel.scrollBy({ left: slideWidth * direction, behavior: "smooth" });
+      }
+
+      function showPhoto(index) {
+        if (!activeGallery.length) return;
+        activePhotoIndex = (index + activeGallery.length) % activeGallery.length;
+        photoViewerImage.src = activeGallery[activePhotoIndex];
+        photoViewerImage.alt = `Foto ${activePhotoIndex + 1} do imóvel`;
+      }
+
+      function setPhotoViewer(open, index = activePhotoIndex) {
+        if (open) showPhoto(index);
+        photoViewer.classList.toggle("is-open", open);
+        photoViewer.setAttribute("aria-hidden", String(!open));
+      }
+
+      function wireModalControls() {
+        propertyOverlay.querySelector("[data-close-property]")?.addEventListener("click", () => setPropertyModal(false));
+        propertyOverlay.querySelector("[data-carousel-prev]")?.addEventListener("click", () => moveCarousel(-1));
+        propertyOverlay.querySelector("[data-carousel-next]")?.addEventListener("click", () => moveCarousel(1));
+        propertyOverlay.querySelectorAll("#propertyCarousel img").forEach((image) => {
+          image.addEventListener("click", () => setPhotoViewer(true, Number(image.dataset.photoIndex || 0)));
+        });
+      }
+
+      function setupReveal() {
+        const revealTargets = document.querySelectorAll(
+          ".properties-heading, .about-header, .broker-card, .testimonial-card, .site-footer"
+        );
+        revealTargets.forEach((element, index) => {
+          element.classList.add("reveal");
+          element.style.setProperty("--delay", `${Math.min(index % 6, 5) * 70}ms`);
+        });
+
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          revealTargets.forEach((element) => element.classList.add("is-visible"));
+          return;
+        }
+
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.16, rootMargin: "0px 0px -40px 0px" }
+        );
+
+        revealTargets.forEach((element) => revealObserver.observe(element));
+      }
+
+      setHeaderState();
+      window.addEventListener("scroll", setHeaderState, { passive: true });
+
+      toggle.addEventListener("click", () => setMenu(!header.classList.contains("is-open")));
+      menuLinks.forEach((link) => link.addEventListener("click", () => setMenu(false)));
 
       propertyTabs.forEach((tab) => {
         tab.addEventListener("click", () => {
           const isCategory = tab.dataset.tab === "category";
-
           propertyShell.classList.toggle("is-filter-mode", isCategory);
           propertyTabs.forEach((item) => item.classList.toggle("is-active", item === tab));
+
+          if (!isCategory) {
+            filterChips.forEach((chip) => chip.classList.remove("is-selected"));
+            renderizarImoveis("todos");
+          }
         });
       });
 
       filterChips.forEach((chip) => {
         chip.addEventListener("click", () => {
-          chip.classList.toggle("is-selected");
+          filterChips.forEach((item) => item.classList.toggle("is-selected", item === chip));
+          renderizarImoveis(chip.dataset.category || chip.textContent.trim());
         });
       });
 
-      function setPropertyModal(open) {
-        propertyOverlay.classList.toggle("is-open", open);
-        propertyOverlay.setAttribute("aria-hidden", String(!open));
-        document.body.classList.toggle("modal-open", open);
-        if (!open) {
-          setPhotoViewer(false);
-        }
-      }
-
-      openPropertyButtons.forEach((button) => {
-        button.addEventListener("click", () => setPropertyModal(true));
-      });
-
-      closePropertyButtons.forEach((button) => {
-        button.addEventListener("click", () => setPropertyModal(false));
+      propertyGrid.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-open-property]");
+        if (!button) return;
+        openPropertyModal(button.dataset.openProperty);
       });
 
       propertyOverlay.addEventListener("click", (event) => {
-        if (event.target === propertyOverlay) {
-          setPropertyModal(false);
-        }
+        if (event.target === propertyOverlay) setPropertyModal(false);
       });
 
       document.addEventListener("keydown", (event) => {
@@ -2604,49 +2738,28 @@
           setPhotoViewer(false);
           return;
         }
-
-        if (event.key === "Escape") {
-          setPropertyModal(false);
-        }
-      });
-
-      function moveCarousel(direction) {
-        const slideWidth = carousel.clientWidth / 3;
-        carousel.scrollBy({ left: slideWidth * direction, behavior: "smooth" });
-      }
-
-      carouselPrev.addEventListener("click", () => moveCarousel(-1));
-      carouselNext.addEventListener("click", () => moveCarousel(1));
-
-      function showPhoto(index) {
-        activePhotoIndex = (index + carouselImages.length) % carouselImages.length;
-        const selectedPhoto = carouselImages[activePhotoIndex];
-        photoViewerImage.src = selectedPhoto.src;
-        photoViewerImage.alt = selectedPhoto.alt || "Foto ampliada do imóvel";
-      }
-
-      function setPhotoViewer(open, index = activePhotoIndex) {
-        if (open) {
-          showPhoto(index);
-        }
-
-        photoViewer.classList.toggle("is-open", open);
-        photoViewer.setAttribute("aria-hidden", String(!open));
-      }
-
-      carouselImages.forEach((image, index) => {
-        image.addEventListener("click", () => setPhotoViewer(true, index));
+        if (event.key === "Escape") setPropertyModal(false);
       });
 
       closePhotoButton.addEventListener("click", () => setPhotoViewer(false));
       photoPrev.addEventListener("click", () => showPhoto(activePhotoIndex - 1));
       photoNext.addEventListener("click", () => showPhoto(activePhotoIndex + 1));
-
       photoViewer.addEventListener("click", (event) => {
-        if (event.target === photoViewer) {
-          setPhotoViewer(false);
-        }
+        if (event.target === photoViewer) setPhotoViewer(false);
       });
+
+      if (supabaseClient) {
+        supabaseClient
+          .channel("properties-realtime")
+          .on("postgres_changes", { event: "*", schema: "public", table: "properties" }, () => {
+            renderizarImoveis(activeCategory || "todos");
+          })
+          .subscribe();
+      }
+
+      setupReveal();
+      document.addEventListener("DOMContentLoaded", () => renderizarImoveis("todos"));
+      renderizarImoveis("todos");
     </script>
   </body>
 </html>
