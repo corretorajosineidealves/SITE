@@ -1529,15 +1529,25 @@
         }
 
         .broker-whatsapp {
-          gap: 15px;
-          min-height: 50px;
+          justify-content: center;
+          gap: 11px;
+          min-height: 45px;
+          padding: 8px 16px;
           border-radius: 8px;
-          font-size: 14px;
+          font-size: 12px;
+          line-height: 1.15;
+          letter-spacing: .4px;
+          text-align: left;
         }
 
         .broker-whatsapp img {
-          width: 26px;
-          height: 26px;
+          width: 23px;
+          height: 23px;
+          flex: 0 0 auto;
+        }
+
+        .broker-whatsapp span {
+          line-height: 1.15;
         }
 
         .testimonials {
@@ -2242,10 +2252,11 @@
             <div class="broker-feature">
               <span class="broker-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8 12l3 3a2 2 0 0 0 3 0l5-5" />
-                  <path d="M2 12l4-4 5 5" />
-                  <path d="M22 12l-4-4-7 7" />
-                  <path d="M6 16l2 2M10 18l1 1M15 17l2 2" />
+                  <path d="M4.5 12.5a7.5 7.5 0 0 1 15 0" />
+                  <path d="M5 12.5v3.2a2 2 0 0 0 2 2h1v-5.2H6.2A1.2 1.2 0 0 0 5 13.7Z" />
+                  <path d="M19 12.5v3.2a2 2 0 0 1-2 2h-1v-5.2h1.8a1.2 1.2 0 0 1 1.2 1.2Z" />
+                  <path d="M9.3 9.6c.8-1.1 2.5-1 3.2.2.7-1.2 2.4-1.3 3.2-.2.9 1.3-.1 3-3.2 5.2-3.1-2.2-4.1-3.9-3.2-5.2Z" />
+                  <path d="M14.8 18.2h-2.3" />
                 </svg>
               </span>
               <p>Atendimento, especializado,<br />humanizado e transparente<br />em cada etapa.</p>
@@ -2414,6 +2425,7 @@
       let activeGallery = [];
       let propertyCache = [];
       let activeCategory = "todos";
+      let selectedCategories = new Set();
 
       function escapeHTML(value = "") {
         return String(value).replace(/[&<>'"]/g, (char) => ({
@@ -2486,9 +2498,13 @@
 
         let items = Array.isArray(data) ? data : [];
 
-        if (category && category !== "todos") {
-          const selected = normalizeCategory(category);
-          items = items.filter((item) => normalizeCategory(item.category) === selected);
+        const selectedList = Array.isArray(category) ? category : [category];
+        const normalizedSelected = selectedList
+          .filter((item) => item && item !== "todos")
+          .map((item) => normalizeCategory(item));
+
+        if (normalizedSelected.length) {
+          items = items.filter((item) => normalizedSelected.includes(normalizeCategory(item.category)));
         }
 
         return items.sort((a, b) => {
@@ -2537,7 +2553,7 @@
         propertyCache = await carregarImoveis(category);
 
         if (!propertyCache.length) {
-          propertyGrid.innerHTML = `<div class="property-grid-message">Nenhum imóvel publicado foi encontrado nesta categoria. Cadastre/publice imóveis no painel da Lovable para aparecerem aqui.</div>`;
+          propertyGrid.innerHTML = `<div class="property-grid-message">Nenhum imóvel publicado foi encontrado nesta categoria.</div>`;
           return;
         }
 
@@ -2710,16 +2726,31 @@
           propertyTabs.forEach((item) => item.classList.toggle("is-active", item === tab));
 
           if (!isCategory) {
+            selectedCategories.clear();
             filterChips.forEach((chip) => chip.classList.remove("is-selected"));
             renderizarImoveis("todos");
+            return;
           }
+
+          const selected = Array.from(selectedCategories);
+          renderizarImoveis(selected.length ? selected : "todos");
         });
       });
 
       filterChips.forEach((chip) => {
         chip.addEventListener("click", () => {
-          filterChips.forEach((item) => item.classList.toggle("is-selected", item === chip));
-          renderizarImoveis(chip.dataset.category || chip.textContent.trim());
+          const category = chip.dataset.category || chip.textContent.trim();
+
+          if (selectedCategories.has(category)) {
+            selectedCategories.delete(category);
+            chip.classList.remove("is-selected");
+          } else {
+            selectedCategories.add(category);
+            chip.classList.add("is-selected");
+          }
+
+          const selected = Array.from(selectedCategories);
+          renderizarImoveis(selected.length ? selected : "todos");
         });
       });
 
@@ -2752,7 +2783,7 @@
         supabaseClient
           .channel("properties-realtime")
           .on("postgres_changes", { event: "*", schema: "public", table: "properties" }, () => {
-            renderizarImoveis(activeCategory || "todos");
+            renderizarImoveis(selectedCategories.size ? Array.from(selectedCategories) : (activeCategory || "todos"));
           })
           .subscribe();
       }
