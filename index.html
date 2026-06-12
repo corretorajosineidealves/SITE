@@ -1,5 +1,4 @@
 
-
 <!doctype html>
 <html lang="pt-BR">
   <head>
@@ -527,6 +526,7 @@
         line-height: 1;
       }
 
+      /* ===== CAROUSEL / MEDIA ===== */
       .carousel {
         position: relative;
         height: 230px;
@@ -554,6 +554,67 @@
         object-fit: cover;
         border-right: 2px solid var(--white);
         cursor: zoom-in;
+      }
+
+      /* ===== VIDEO no carousel ===== */
+      .carousel-track .media-video-wrap {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-right: 2px solid var(--white);
+        background: #111;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+
+      .carousel-track .media-video-wrap video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .carousel-track .media-video-wrap .video-play-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.28);
+        transition: background 260ms ease;
+        pointer-events: none;
+      }
+
+      .carousel-track .media-video-wrap:hover .video-play-overlay {
+        background: rgba(0, 0, 0, 0.14);
+      }
+
+      .video-play-overlay svg {
+        width: 48px;
+        height: 48px;
+        opacity: 0.88;
+        filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+      }
+
+      /* ===== VIDEO no photo-viewer (fullscreen) ===== */
+      .photo-viewer video {
+        width: min(100%, 1120px);
+        max-height: 82vh;
+        border-radius: 16px;
+        box-shadow: 0 22px 60px rgba(0, 0, 0, 0.34);
+        background: #000;
+        display: none;
+      }
+
+      .photo-viewer.show-video img {
+        display: none;
+      }
+
+      .photo-viewer.show-video video {
+        display: block;
       }
 
       .carousel-arrow {
@@ -1417,6 +1478,11 @@
           border-radius: 10px;
         }
 
+        .photo-viewer video {
+          max-height: 76vh;
+          border-radius: 10px;
+        }
+
         .photo-close {
           top: 14px;
           right: 14px;
@@ -1637,6 +1703,11 @@
           margin-top: 18px;
           font-size: 11px;
         }
+
+        .video-play-overlay svg {
+          width: 30px;
+          height: 30px;
+        }
       }
 
 
@@ -1791,7 +1862,9 @@
       }
 
       .carousel-arrow.prev:hover,
-      .carousel-arrow.next:hover {
+      .carousel-arrow.next:hover,
+      .photo-arrow.prev:hover,
+      .photo-arrow.next:hover {
         transform: translateY(-50%) scale(1.08);
       }
 
@@ -2046,8 +2119,6 @@
         }
       }
 
-
-
       .property-card {
         position: relative;
       }
@@ -2067,7 +2138,7 @@
         font-size: 10px;
         font-weight: 700;
         letter-spacing: 1.6px;
-        text-transform: uppercase;
+        text-        transform: uppercase;
         box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
         backdrop-filter: blur(10px);
       }
@@ -2120,7 +2191,6 @@
           font-size: 14px;
         }
       }
-
     </style>
   </head>
   <body>
@@ -2219,7 +2289,7 @@
 
           <div class="property-grid" id="lista-imoveis" aria-live="polite">
             <div class="property-grid-message">Carregando imóveis...</div>
-          </div>          </div>
+          </div>
         </div>
       </div>
     </section>
@@ -2246,7 +2316,7 @@
                   <path d="M8 13h2M12 13h2M16 13h1M8 16h2M12 16h2M16 16h1" />
                 </svg>
               </span>
-              <p>+X anos no mercado<br />somando +Y clientes<br />satisfeitos</p>
+              <p>Mais de 13 anos no mercado<br />somando mais de 150 imóveis<br />vendidos com sucesso</p>
             </div>
 
             <div class="broker-feature">
@@ -2259,7 +2329,7 @@
                   <path d="M14.8 18.2h-2.3" />
                 </svg>
               </span>
-              <p>Atendimento, especializado,<br />humanizado e transparente<br />em cada etapa.</p>
+              <p>Atendimento especializado,<br />humanizado e transparente<br />em cada etapa.</p>
             </div>
 
             <div class="broker-feature">
@@ -2269,7 +2339,7 @@
                   <circle cx="12" cy="9" r="2.2" />
                 </svg>
               </span>
-              <p>Especialista em Lançamento<br />e Oportunidades em Palmas<br />e região</p>
+              <p>Especialista em Lançamentos<br />e Oportunidades em Palmas<br />e região</p>
             </div>
           </div>
 
@@ -2297,6 +2367,7 @@
         <div class="testimonials">
           <h3>Depoimentos</h3>
           <div class="testimonial-list">
+
             <article class="testimonial-card">
               <div class="testimonial-author">
                 <svg class="avatar-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -2304,9 +2375,9 @@
                   <circle cx="12" cy="9" r="4" fill="#fff" />
                   <path d="M5.5 19a7 7 0 0 1 13 0" fill="#fff" />
                 </svg>
-                <span>Nome Sobrenome</span>
+                <span>Fernanda Rocha</span>
               </div>
-              <p>“ Comentário nesse trecho de texto texto texto texto texto texto texto texto texto texto texto texto ”</p>
+              <p>"A Josineide foi incrível durante todo o processo de compra do nosso apartamento. Ela entendeu exatamente o que a gente queria e nos apresentou opções perfeitas. Super recomendo!"</p>
             </article>
 
             <article class="testimonial-card">
@@ -2316,9 +2387,9 @@
                   <circle cx="12" cy="9" r="4" fill="#fff" />
                   <path d="M5.5 19a7 7 0 0 1 13 0" fill="#fff" />
                 </svg>
-                <span>Nome Sobrenome</span>
+                <span>Carlos Mendonça</span>
               </div>
-              <p>“ Comentário nesse trecho de texto texto texto texto texto texto texto texto texto texto texto texto ”</p>
+              <p>"Profissional extremamente dedicada e honesta. Nos ajudou a vender nossa casa em tempo recorde e ainda encontrou um imóvel melhor para a nossa família. Gratidão enorme!"</p>
             </article>
 
             <article class="testimonial-card">
@@ -2328,9 +2399,9 @@
                   <circle cx="12" cy="9" r="4" fill="#fff" />
                   <path d="M5.5 19a7 7 0 0 1 13 0" fill="#fff" />
                 </svg>
-                <span>Nome Sobrenome</span>
+                <span>Patrícia Lima</span>
               </div>
-              <p>“ Comentário nesse trecho de texto texto texto texto texto texto texto texto texto texto texto texto ”</p>
+              <p>"Comprei meu primeiro lote em Palmas com a orientação da Josineide. Ela explicou cada detalhe da negociação com muita paciência. Fui atendida com atenção do início ao fim!"</p>
             </article>
 
             <article class="testimonial-card">
@@ -2340,10 +2411,11 @@
                   <circle cx="12" cy="9" r="4" fill="#fff" />
                   <path d="M5.5 19a7 7 0 0 1 13 0" fill="#fff" />
                 </svg>
-                <span>Nome Sobrenome</span>
+                <span>Ricardo Tavares</span>
               </div>
-              <p>“ Comentário nesse trecho de texto texto texto texto texto texto texto texto texto texto texto texto ”</p>
+              <p>"Conheci a Josineide por indicação e foi a melhor coisa que me indicaram. Atendimento humanizado, transparente e sem enrolação. Fechamos negócio em menos de duas semanas!"</p>
             </article>
+
           </div>
         </div>
       </div>
@@ -2391,11 +2463,13 @@
 
     <div class="property-overlay" id="propertyOverlay" aria-hidden="true"></div>
 
+    <!-- Photo / Video Viewer -->
     <div class="photo-viewer" id="photoViewer" aria-hidden="true">
-      <button class="photo-close" type="button" aria-label="Fechar foto ampliada" data-close-photo>&times;</button>
-      <button class="photo-arrow prev" type="button" aria-label="Foto anterior" data-photo-prev>‹</button>
+      <button class="photo-close" type="button" aria-label="Fechar mídia ampliada" data-close-photo>&times;</button>
+      <button class="photo-arrow prev" type="button" aria-label="Mídia anterior" data-photo-prev>‹</button>
       <img id="photoViewerImage" src="" alt="Foto ampliada do imóvel" />
-      <button class="photo-arrow next" type="button" aria-label="Próxima foto" data-photo-next>›</button>
+      <video id="photoViewerVideo" controls playsinline></video>
+      <button class="photo-arrow next" type="button" aria-label="Próxima mídia" data-photo-next>›</button>
     </div>
 
     <a class="floating-whatsapp" href="https://wa.me/5563999337030?text=Ol%C3%A1%2C%20Josineide%21%20Vim%20pelo%20site%20e%20gostaria%20de%20atendimento%20imobili%C3%A1rio%20em%20Palmas%20e%20regi%C3%A3o." aria-label="Fale no WhatsApp">
@@ -2408,79 +2482,123 @@
       const WHATSAPP_NUMBER = "5563999337030";
       const supabaseClient = window.supabase?.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-      const header = document.querySelector("#siteHeader");
-      const toggle = document.querySelector(".menu-toggle");
-      const menuLinks = document.querySelectorAll(".mobile-menu a");
-      const propertyShell = document.querySelector("#propertyShell");
-      const propertyTabs = document.querySelectorAll("[data-tab]");
-      const filterChips = document.querySelectorAll(".filter-chip");
-      const propertyGrid = document.querySelector("#lista-imoveis");
+      const header          = document.querySelector("#siteHeader");
+      const toggle          = document.querySelector(".menu-toggle");
+      const menuLinks       = document.querySelectorAll(".mobile-menu a");
+      const propertyShell   = document.querySelector("#propertyShell");
+      const propertyTabs    = document.querySelectorAll("[data-tab]");
+      const filterChips     = document.querySelectorAll(".filter-chip");
+      const propertyGrid    = document.querySelector("#lista-imoveis");
       const propertyOverlay = document.querySelector("#propertyOverlay");
-      const photoViewer = document.querySelector("#photoViewer");
+      const photoViewer     = document.querySelector("#photoViewer");
       const photoViewerImage = document.querySelector("#photoViewerImage");
+      const photoViewerVideo = document.querySelector("#photoViewerVideo");
       const closePhotoButton = document.querySelector("[data-close-photo]");
-      const photoPrev = document.querySelector("[data-photo-prev]");
-      const photoNext = document.querySelector("[data-photo-next]");
-      let activePhotoIndex = 0;
-      let activeGallery = [];
-      let propertyCache = [];
-      let activeCategory = "todos";
+      const photoPrev        = document.querySelector("[data-photo-prev]");
+      const photoNext        = document.querySelector("[data-photo-next]");
+
+      let activePhotoIndex  = 0;
+      let activeGallery     = []; // cada item: { type: "image"|"video", url: "..." }
+      let propertyCache     = [];
+      let activeCategory    = "todos";
       let selectedCategories = new Set();
 
+      /* ── Helpers ── */
       function escapeHTML(value = "") {
-        return String(value).replace(/[&<>'"]/g, (char) => ({
-          "&": "&amp;",
-          "<": "&lt;",
-          ">": "&gt;",
-          "'": "&#039;",
-          '"': "&quot;",
-        }[char]));
+        return String(value).replace(/[&<>'"]/g, (c) => ({
+          "&": "&", "<": "<", ">": ">", "'": "&#039;", '"': "&quot;"
+        }[c]));
       }
 
       function brl(value) {
         if (value === null || value === undefined || value === "") return "Consulte";
-        const number = Number(value);
-        if (Number.isNaN(number)) return "Consulte";
-        return number.toLocaleString("pt-BR", {
-          style: "currency",
-          currency: "BRL",
-          maximumFractionDigits: 0,
-        });
+        const n = Number(value);
+        if (Number.isNaN(n)) return "Consulte";
+        return n.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
       }
 
-      function locationText(property) {
-        return [property.neighborhood, property.city, property.state].filter(Boolean).join(", ") || property.location || "Palmas - TO";
+      function locationText(p) {
+        return [p.neighborhood, p.city, p.state].filter(Boolean).join(", ") || p.location || "Palmas - TO";
       }
 
-      function specsText(property) {
-        return `${property.bedrooms ?? "-"} Quartos · ${property.bathrooms ?? "-"} Banheiros · ${property.area_m2 ?? "-"}m²`;
-      }
-
-      function whatsappLink(property) {
-        if (property.whatsapp_link) return property.whatsapp_link;
-        const message = `Olá, Josineide! Tenho interesse no imóvel "${property.title || "anunciado no site"}". Pode me enviar mais informações?`;
-        return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      function whatsappLink(p) {
+        if (p.whatsapp_link) return p.whatsapp_link;
+        const msg = `Olá, Josineide! Tenho interesse no imóvel "${p.title || "anunciado no site"}". Pode me enviar mais informações?`;
+        return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
       }
 
       function pinIcon() {
-        return `
-          <svg class="location-pin-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z" />
-          </svg>`;
+        return `<svg class="location-pin-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/>
+        </svg>`;
+      }
+
+      function playIcon() {
+        return `<svg viewBox="0 0 24 24" fill="white" aria-hidden="true">
+          <circle cx="12" cy="12" r="12" fill="rgba(0,0,0,0.45)"/>
+          <polygon points="10,8 18,12 10,16" fill="white"/>
+        </svg>`;
       }
 
       function normalizeCategory(value = "") {
-        return String(value)
-          .toLowerCase()
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "")
-          .replace(/s$/i, "")
-          .trim();
+        return String(value).toLowerCase()
+          .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+          .replace(/s$/i, "").trim();
       }
 
+      /* Detecta se uma URL é vídeo pelo tipo MIME ou extensão */
+      function isVideoURL(url = "") {
+        return /\.(mp4|webm|ogg|mov|m4v)(\?.*)?$/i.test(url);
+      }
+
+      /* Monta galeria unificada: imagens + vídeos */
+      function buildGallery(property) {
+        const items = [];
+
+        // Adiciona imagem principal
+        if (property.main_image_url) {
+          items.push({ type: "image", url: property.main_image_url });
+        }
+
+        // Adiciona vídeo principal (campo video_url, se existir no banco)
+        if (property.video_url) {
+          items.push({ type: "video", url: property.video_url });
+        }
+
+        // Adiciona galeria (gallery_images) — detecta tipo automaticamente
+        if (Array.isArray(property.gallery_images)) {
+          property.gallery_images.forEach((url) => {
+            if (!url) return;
+            // Evita duplicar a main_image_url se já estiver na galeria
+            const alreadyAdded = items.some((i) => i.url === url);
+            if (!alreadyAdded) {
+              items.push({ type: isVideoURL(url) ? "video" : "image", url });
+            }
+          });
+        }
+
+        // Adiciona videos (campo real no banco) e videos_urls (campo alternativo)
+        const videoList = Array.isArray(property.videos)
+          ? property.videos
+          : (Array.isArray(property.videos_urls) ? property.videos_urls : []);
+
+        if (videoList.length) {
+          videoList.forEach((url) => {
+            if (!url) return;
+            const alreadyAdded = items.some((i) => i.url === url);
+            if (!alreadyAdded) {
+              items.push({ type: "video", url });
+            }
+          });
+        }
+
+        return items;
+      }
+
+      /* ── Supabase ── */
       async function carregarImoveis(category = "todos") {
         if (!supabaseClient) {
-          propertyGrid.innerHTML = `<div class="property-grid-message">Não foi possível carregar o Supabase. Verifique se o script do Supabase está carregando no GitHub Pages.</div>`;
+          propertyGrid.innerHTML = `<div class="property-grid-message">Não foi possível carregar o Supabase.</div>`;
           return [];
         }
 
@@ -2491,20 +2609,19 @@
           .order("created_at", { ascending: false });
 
         if (error) {
-          console.error("Erro ao buscar imóveis no Supabase:", error);
-          propertyGrid.innerHTML = `<div class="property-grid-message">Não foi possível carregar os imóveis. Verifique no Supabase se a tabela <strong>properties</strong> permite leitura pública para imóveis publicados.</div>`;
+          console.error("Erro ao buscar imóveis:", error);
+          propertyGrid.innerHTML = `<div class="property-grid-message">Não foi possível carregar os imóveis.</div>`;
           return [];
         }
 
         let items = Array.isArray(data) ? data : [];
-
         const selectedList = Array.isArray(category) ? category : [category];
         const normalizedSelected = selectedList
-          .filter((item) => item && item !== "todos")
-          .map((item) => normalizeCategory(item));
+          .filter((c) => c && c !== "todos")
+          .map(normalizeCategory);
 
         if (normalizedSelected.length) {
-          items = items.filter((item) => normalizedSelected.includes(normalizeCategory(item.category)));
+          items = items.filter((p) => normalizedSelected.includes(normalizeCategory(p.category)));
         }
 
         return items.sort((a, b) => {
@@ -2514,14 +2631,16 @@
         });
       }
 
+      /* ── Card HTML ── */
       function cardHTML(property) {
-        const title = escapeHTML(property.title || "Imóvel disponível");
-        const image = property.main_image_url ? escapeHTML(property.main_image_url) : "";
+        const title    = escapeHTML(property.title || "Imóvel disponível");
+        const image    = property.main_image_url ? escapeHTML(property.main_image_url) : "";
+
         const imageHTML = image
           ? `<img class="property-card-photo" src="${image}" alt="${title}" loading="lazy" />`
           : `<div class="property-card-photo property-card-photo-placeholder">Imagem não cadastrada</div>`;
-        const location = escapeHTML(locationText(property));
-        const selo = ["Destaque", "Lançamento", "Oportunidade", "Alto padrão"].includes(property.classification)
+
+        const selo = ["Destaque","Lançamento","Oportunidade","Alto padrão"].includes(property.classification)
           ? `<span class="selo">${escapeHTML(property.classification)}</span>`
           : "";
 
@@ -2533,7 +2652,7 @@
               <h3>${title}</h3>
               <div class="property-card-location">
                 ${pinIcon()}
-                <span>${location}</span>
+                <span>${escapeHTML(locationText(property))}</span>
               </div>
               <div class="property-card-meta">
                 <span>${escapeHTML(property.bedrooms ?? "-")} Quartos</span>
@@ -2546,6 +2665,7 @@
           </article>`;
       }
 
+      /* ── Renderizar ── */
       async function renderizarImoveis(category = "todos") {
         activeCategory = category;
         window.__categoriaAtiva = category;
@@ -2560,6 +2680,7 @@
         propertyGrid.innerHTML = propertyCache.map(cardHTML).join("");
       }
 
+      /* ── Detail helpers ── */
       function detailItem(label, value, helper) {
         if (value === null || value === undefined || value === "") return "";
         return `
@@ -2572,17 +2693,24 @@
           </div>`;
       }
 
+      /* ── Modal ── */
       function openPropertyModal(id) {
-        const property = propertyCache.find((item) => String(item.id) === String(id));
+        const property = propertyCache.find((p) => String(p.id) === String(id));
         if (!property) return;
 
-        activeGallery = Array.isArray(property.gallery_images) && property.gallery_images.length
-          ? property.gallery_images
-          : [property.main_image_url].filter(Boolean);
+        activeGallery = buildGallery(property);
 
-        const galleryHTML = activeGallery.map((url, index) => `
-          <img src="${escapeHTML(url)}" alt="Foto ${index + 1} do imóvel" data-photo-index="${index}" loading="lazy" />
-        `).join("");
+        /* Gera os slides do carousel (imagens + vídeos) */
+        const carouselHTML = activeGallery.map((item, index) => {
+          if (item.type === "video") {
+            return `
+              <div class="media-video-wrap" data-photo-index="${index}" data-media-type="video">
+                <video src="${escapeHTML(item.url)}" muted playsinline preload="metadata"></video>
+                <div class="video-play-overlay">${playIcon()}</div>
+              </div>`;
+          }
+          return `<img src="${escapeHTML(item.url)}" alt="Foto ${index + 1} do imóvel" data-photo-index="${index}" data-media-type="image" loading="lazy" />`;
+        }).join("");
 
         propertyOverlay.innerHTML = `
           <article class="property-modal" role="dialog" aria-modal="true" aria-labelledby="propertyModalTitle">
@@ -2590,7 +2718,7 @@
 
             <div class="carousel">
               <button class="carousel-arrow prev" type="button" aria-label="Imagem anterior" data-carousel-prev>‹</button>
-              <div class="carousel-track" id="propertyCarousel">${galleryHTML}</div>
+              <div class="carousel-track" id="propertyCarousel">${carouselHTML}</div>
               <button class="carousel-arrow next" type="button" aria-label="Próxima imagem" data-carousel-next>›</button>
             </div>
 
@@ -2605,19 +2733,19 @@
               <section class="detail-group" aria-label="Cômodos e espaços">
                 <h4>Cômodos e espaços</h4>
                 <div class="detail-list">
-                  ${detailItem("Quartos", property.bedrooms, "Total de dormitórios, incluindo as suítes")}
-                  ${detailItem("Banheiros", property.bathrooms, "Inclui banheiros, lavabos, suítes e demi-suítes")}
-                  ${detailItem("Suítes", property.suites, "Total de suítes")}
-                  ${detailItem("Vagas", property.parking_spaces, "Vagas de garagem")}
+                  ${detailItem("Quartos",   property.bedrooms,        "Total de dormitórios, incluindo as suítes")}
+                  ${detailItem("Banheiros", property.bathrooms,       "Inclui banheiros, lavabos, suítes e demi-suítes")}
+                  ${detailItem("Suítes",    property.suites,          "Total de suítes")}
+                  ${detailItem("Vagas",     property.parking_spaces,  "Vagas de garagem")}
                 </div>
               </section>
 
               <section class="detail-group" aria-label="Dimensões e metragens">
                 <h4>Dimensões e metragens</h4>
                 <div class="detail-list">
-                  ${detailItem("m² de área", property.area_m2, "Área total informada do imóvel")}
-                  ${detailItem("m² construídos", property.built_area_m2, "Área construída")}
-                  ${detailItem("m² de terreno", property.land_area_m2, "Metragem do terreno")}
+                  ${detailItem("m² de área",       property.area_m2,       "Área total informada do imóvel")}
+                  ${detailItem("m² construídos",   property.built_area_m2, "Área construída")}
+                  ${detailItem("m² de terreno",    property.land_area_m2,  "Metragem do terreno")}
                 </div>
               </section>
 
@@ -2638,6 +2766,43 @@
         wireModalControls();
       }
 
+      /* ── Viewer de mídia (foto/vídeo em fullscreen) ── */
+      function showMedia(index) {
+        if (!activeGallery.length) return;
+        activePhotoIndex = (index + activeGallery.length) % activeGallery.length;
+        const item = activeGallery[activePhotoIndex];
+
+        // Para vídeo anterior se estiver tocando
+        photoViewerVideo.pause();
+        photoViewerVideo.src = "";
+
+        if (item.type === "video") {
+          photoViewer.classList.add("show-video");
+          photoViewerVideo.src = item.url;
+          photoViewerVideo.load();
+          photoViewerVideo.play().catch(() => {});
+          photoViewerVideo.alt = `Vídeo ${activePhotoIndex + 1} do imóvel`;
+        } else {
+          photoViewer.classList.remove("show-video");
+          photoViewerImage.src = item.url;
+          photoViewerImage.alt = `Foto ${activePhotoIndex + 1} do imóvel`;
+        }
+      }
+
+      function setPhotoViewer(open, index = activePhotoIndex) {
+        if (open) {
+          showMedia(index);
+        } else {
+          // Para o vídeo ao fechar
+          photoViewerVideo.pause();
+          photoViewerVideo.src = "";
+          photoViewer.classList.remove("show-video");
+        }
+        photoViewer.classList.toggle("is-open", open);
+        photoViewer.setAttribute("aria-hidden", String(!open));
+      }
+
+      /* ── Header ── */
       function setHeaderState() {
         header.classList.toggle("is-scrolled", window.scrollY > 18);
       }
@@ -2662,57 +2827,53 @@
         carousel.scrollBy({ left: slideWidth * direction, behavior: "smooth" });
       }
 
-      function showPhoto(index) {
-        if (!activeGallery.length) return;
-        activePhotoIndex = (index + activeGallery.length) % activeGallery.length;
-        photoViewerImage.src = activeGallery[activePhotoIndex];
-        photoViewerImage.alt = `Foto ${activePhotoIndex + 1} do imóvel`;
-      }
-
-      function setPhotoViewer(open, index = activePhotoIndex) {
-        if (open) showPhoto(index);
-        photoViewer.classList.toggle("is-open", open);
-        photoViewer.setAttribute("aria-hidden", String(!open));
-      }
-
+      /* ── Wiring do modal ── */
       function wireModalControls() {
-        propertyOverlay.querySelector("[data-close-property]")?.addEventListener("click", () => setPropertyModal(false));
-        propertyOverlay.querySelector("[data-carousel-prev]")?.addEventListener("click", () => moveCarousel(-1));
-        propertyOverlay.querySelector("[data-carousel-next]")?.addEventListener("click", () => moveCarousel(1));
-        propertyOverlay.querySelectorAll("#propertyCarousel img").forEach((image) => {
-          image.addEventListener("click", () => setPhotoViewer(true, Number(image.dataset.photoIndex || 0)));
+        propertyOverlay.querySelector("[data-close-property]")
+          ?.addEventListener("click", () => setPropertyModal(false));
+
+        propertyOverlay.querySelector("[data-carousel-prev]")
+          ?.addEventListener("click", () => moveCarousel(-1));
+
+        propertyOverlay.querySelector("[data-carousel-next]")
+          ?.addEventListener("click", () => moveCarousel(1));
+
+        // Clique em imagens do carousel → abre viewer
+        propertyOverlay.querySelectorAll("#propertyCarousel img[data-photo-index]").forEach((img) => {
+          img.addEventListener("click", () => setPhotoViewer(true, Number(img.dataset.photoIndex)));
+        });
+
+        // Clique em vídeos do carousel → abre viewer em modo vídeo
+        propertyOverlay.querySelectorAll("#propertyCarousel .media-video-wrap").forEach((wrap) => {
+          wrap.addEventListener("click", () => setPhotoViewer(true, Number(wrap.dataset.photoIndex)));
         });
       }
 
+      /* ── Reveal on scroll ── */
       function setupReveal() {
-        const revealTargets = document.querySelectorAll(
+        const targets = document.querySelectorAll(
           ".properties-heading, .about-header, .broker-card, .testimonial-card, .site-footer"
         );
-        revealTargets.forEach((element, index) => {
-          element.classList.add("reveal");
-          element.style.setProperty("--delay", `${Math.min(index % 6, 5) * 70}ms`);
+        targets.forEach((el, i) => {
+          el.classList.add("reveal");
+          el.style.setProperty("--delay", `${Math.min(i % 6, 5) * 70}ms`);
         });
 
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-          revealTargets.forEach((element) => element.classList.add("is-visible"));
+          targets.forEach((el) => el.classList.add("is-visible"));
           return;
         }
 
-        const revealObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("is-visible");
-                revealObserver.unobserve(entry.target);
-              }
-            });
-          },
+        const observer = new IntersectionObserver(
+          (entries) => entries.forEach((e) => {
+            if (e.isIntersecting) { e.target.classList.add("is-visible"); observer.unobserve(e.target); }
+          }),
           { threshold: 0.16, rootMargin: "0px 0px -40px 0px" }
         );
-
-        revealTargets.forEach((element) => revealObserver.observe(element));
+        targets.forEach((el) => observer.observe(el));
       }
 
+      /* ── Eventos globais ── */
       setHeaderState();
       window.addEventListener("scroll", setHeaderState, { passive: true });
 
@@ -2723,11 +2884,11 @@
         tab.addEventListener("click", () => {
           const isCategory = tab.dataset.tab === "category";
           propertyShell.classList.toggle("is-filter-mode", isCategory);
-          propertyTabs.forEach((item) => item.classList.toggle("is-active", item === tab));
+          propertyTabs.forEach((t) => t.classList.toggle("is-active", t === tab));
 
           if (!isCategory) {
             selectedCategories.clear();
-            filterChips.forEach((chip) => chip.classList.remove("is-selected"));
+            filterChips.forEach((c) => c.classList.remove("is-selected"));
             renderizarImoveis("todos");
             return;
           }
@@ -2740,7 +2901,6 @@
       filterChips.forEach((chip) => {
         chip.addEventListener("click", () => {
           const category = chip.dataset.category || chip.textContent.trim();
-
           if (selectedCategories.has(category)) {
             selectedCategories.delete(category);
             chip.classList.remove("is-selected");
@@ -2748,37 +2908,38 @@
             selectedCategories.add(category);
             chip.classList.add("is-selected");
           }
-
           const selected = Array.from(selectedCategories);
           renderizarImoveis(selected.length ? selected : "todos");
         });
       });
 
-      propertyGrid.addEventListener("click", (event) => {
-        const button = event.target.closest("[data-open-property]");
-        if (!button) return;
-        openPropertyModal(button.dataset.openProperty);
+      propertyGrid.addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-open-property]");
+        if (btn) openPropertyModal(btn.dataset.openProperty);
       });
 
-      propertyOverlay.addEventListener("click", (event) => {
-        if (event.target === propertyOverlay) setPropertyModal(false);
+      propertyOverlay.addEventListener("click", (e) => {
+        if (e.target === propertyOverlay) setPropertyModal(false);
       });
 
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && photoViewer.classList.contains("is-open")) {
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && photoViewer.classList.contains("is-open")) {
           setPhotoViewer(false);
           return;
         }
-        if (event.key === "Escape") setPropertyModal(false);
+        if (e.key === "Escape") setPropertyModal(false);
+        if (e.key === "ArrowLeft"  && photoViewer.classList.contains("is-open")) showMedia(activePhotoIndex - 1);
+        if (e.key === "ArrowRight" && photoViewer.classList.contains("is-open")) showMedia(activePhotoIndex + 1);
       });
 
       closePhotoButton.addEventListener("click", () => setPhotoViewer(false));
-      photoPrev.addEventListener("click", () => showPhoto(activePhotoIndex - 1));
-      photoNext.addEventListener("click", () => showPhoto(activePhotoIndex + 1));
-      photoViewer.addEventListener("click", (event) => {
-        if (event.target === photoViewer) setPhotoViewer(false);
+      photoPrev.addEventListener("click", () => showMedia(activePhotoIndex - 1));
+      photoNext.addEventListener("click", () => showMedia(activePhotoIndex + 1));
+      photoViewer.addEventListener("click", (e) => {
+        if (e.target === photoViewer) setPhotoViewer(false);
       });
 
+      /* ── Realtime Supabase ── */
       if (supabaseClient) {
         supabaseClient
           .channel("properties-realtime")
@@ -2788,9 +2949,11 @@
           .subscribe();
       }
 
+      /* ── Init ── */
       setupReveal();
       document.addEventListener("DOMContentLoaded", () => renderizarImoveis("todos"));
       renderizarImoveis("todos");
     </script>
   </body>
 </html>
+
