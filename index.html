@@ -1,4 +1,5 @@
 
+
 <!doctype html>
 <html lang="pt-BR">
   <head>
@@ -309,34 +310,16 @@
         background: var(--accent);
       }
 
-      .property-shell.is-filter-mode .property-tab[data-tab="category"] {
-        color: var(--text);
-        background: #ead2a3;
-      }
-
-      .property-shell.is-filter-mode .property-tab[data-tab="all"] {
-        color: var(--white);
-        background: var(--accent);
-      }
-
       .property-panel {
         background: var(--accent);
         border-radius: 22px;
         padding: 34px 44px 42px;
       }
 
-      .property-shell.is-filter-mode .property-panel {
-        background: #ead2a3;
-      }
-
       .category-filters {
-        display: none;
-        margin: 0 0 34px;
-        color: var(--text);
-      }
-
-      .property-shell.is-filter-mode .category-filters {
         display: block;
+        margin: 0 0 34px;
+        color: var(--white);
       }
 
       .filter-label {
@@ -367,6 +350,10 @@
         font: inherit;
         font-size: 18px;
         font-weight: 400;
+      }
+
+      .filter-chip[data-category="todos"] {
+        min-width: 118px;
       }
 
       .filter-chip::before {
@@ -740,7 +727,7 @@
         bottom: 0;
         z-index: 5;
         display: grid;
-        grid-template-columns: 220px 1fr;
+        grid-template-columns: 220px minmax(180px, 240px) 1fr;
         gap: 24px;
         align-items: center;
         min-height: 78px;
@@ -762,12 +749,21 @@
         align-items: center;
         justify-content: center;
         min-height: 46px;
+        border: 0;
         border-radius: 11px;
         background: var(--white);
+        color: #805a23;
+        cursor: pointer;
         font-size: 13px;
         font-weight: 500;
         letter-spacing: 5px;
         text-transform: uppercase;
+      }
+
+      .share-button {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.72);
+        color: var(--white);
       }
 
       .interest-button span {
@@ -775,6 +771,11 @@
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
+      }
+
+      .interest-button.share-button span {
+        background: none;
+        color: var(--white);
       }
 
       .photo-viewer {
@@ -2270,15 +2271,15 @@
       </div>
 
       <div class="property-shell" id="propertyShell">
-        <div class="property-tabs" aria-label="Filtros de imoveis">
+        <div class="property-tabs" aria-label="Seção de imoveis">
           <button class="property-tab is-active" type="button" data-tab="all">Todos os Imóveis</button>
-          <button class="property-tab" type="button" data-tab="category">Buscar por Categoria</button>
         </div>
 
         <div class="property-panel">
           <div class="category-filters" aria-label="Categorias de imóveis">
             <p class="filter-label">Filtros:</p>
             <div class="filter-options">
+              <button class="filter-chip is-selected" type="button" data-category="todos">Todos</button>
               <button class="filter-chip" type="button" data-category="Casas">Casas</button>
               <button class="filter-chip" type="button" data-category="Apartamentos">Apartamentos</button>
               <button class="filter-chip" type="button" data-category="Lotes">Lotes</button>
@@ -2316,7 +2317,7 @@
                   <path d="M8 13h2M12 13h2M16 13h1M8 16h2M12 16h2M16 16h1" />
                 </svg>
               </span>
-              <p>Mais de 13 anos no mercado<br />somando mais de 150 imóveis<br />vendidos com sucesso</p>
+              <p>Mais de 13 anos no mercado<br />somando inúmeros imóveis<br />vendidos com sucesso</p>
             </div>
 
             <div class="broker-feature">
@@ -2527,6 +2528,48 @@
         return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
       }
 
+      function propertyHash(id) {
+        return `imovel-${encodeURIComponent(String(id))}`;
+      }
+
+      function propertyLink(id) {
+        const url = new URL(window.location.href);
+        url.hash = propertyHash(id);
+        return url.href;
+      }
+
+      function propertyIdFromHash() {
+        const hash = decodeURIComponent(window.location.hash || "").replace(/^#/, "");
+        return hash.startsWith("imovel-") ? hash.slice(7) : "";
+      }
+
+      async function shareProperty(id, button) {
+        const link = propertyLink(id);
+        const property = propertyCache.find((p) => String(p.id) === String(id));
+        const title = property?.title || "Imóvel Josineide Alves Corretora";
+
+        try {
+          if (navigator.share) {
+            await navigator.share({ title, text: "Veja este imóvel:", url: link });
+          } else if (navigator.clipboard?.writeText) {
+            await navigator.clipboard.writeText(link);
+          } else {
+            window.prompt("Copie o link do imóvel:", link);
+          }
+
+          if (button) {
+            const label = button.querySelector("span");
+            const previous = label?.textContent || button.textContent;
+            if (label) label.textContent = "Link copiado";
+            window.setTimeout(() => {
+              if (label) label.textContent = previous;
+            }, 1800);
+          }
+        } catch (error) {
+          console.warn("Compartilhamento cancelado ou indisponível:", error);
+        }
+      }
+
       function pinIcon() {
         return `<svg class="location-pin-icon" viewBox="0 0 24 24" aria-hidden="true">
           <path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/>
@@ -2678,6 +2721,11 @@
         }
 
         propertyGrid.innerHTML = propertyCache.map(cardHTML).join("");
+
+        const linkedPropertyId = propertyIdFromHash();
+        if (linkedPropertyId && propertyCache.some((p) => String(p.id) === String(linkedPropertyId))) {
+          window.requestAnimationFrame(() => openPropertyModal(linkedPropertyId, false));
+        }
       }
 
       /* ── Detail helpers ── */
@@ -2694,9 +2742,13 @@
       }
 
       /* ── Modal ── */
-      function openPropertyModal(id) {
+      function openPropertyModal(id, updateHash = true) {
         const property = propertyCache.find((p) => String(p.id) === String(id));
         if (!property) return;
+
+        if (updateHash && window.location.hash !== `#${propertyHash(id)}`) {
+          history.pushState(null, "", `#${propertyHash(id)}`);
+        }
 
         activeGallery = buildGallery(property);
 
@@ -2758,6 +2810,7 @@
 
             <div class="modal-cta">
               <div class="modal-price">${brl(property.price)}</div>
+              <button class="interest-button share-button" type="button" data-share-property="${escapeHTML(property.id)}"><span>Compartilhar link</span></button>
               <a class="interest-button" href="${escapeHTML(whatsappLink(property))}" target="_blank" rel="noopener"><span>Tenho interesse no imóvel</span></a>
             </div>
           </article>`;
@@ -2820,6 +2873,20 @@
         if (!open) setPhotoViewer(false);
       }
 
+      function openPropertyFromHash() {
+        const id = propertyIdFromHash();
+        if (!id) return;
+
+        if (propertyCache.some((p) => String(p.id) === String(id))) {
+          openPropertyModal(id, false);
+          return;
+        }
+
+        selectedCategories.clear();
+        filterChips.forEach((c) => c.classList.toggle("is-selected", c.dataset.category === "todos"));
+        renderizarImoveis("todos");
+      }
+
       function moveCarousel(direction) {
         const carousel = document.querySelector("#propertyCarousel");
         if (!carousel) return;
@@ -2876,31 +2943,35 @@
       /* ── Eventos globais ── */
       setHeaderState();
       window.addEventListener("scroll", setHeaderState, { passive: true });
+      window.addEventListener("hashchange", openPropertyFromHash);
 
       toggle.addEventListener("click", () => setMenu(!header.classList.contains("is-open")));
       menuLinks.forEach((link) => link.addEventListener("click", () => setMenu(false)));
 
       propertyTabs.forEach((tab) => {
         tab.addEventListener("click", () => {
-          const isCategory = tab.dataset.tab === "category";
-          propertyShell.classList.toggle("is-filter-mode", isCategory);
           propertyTabs.forEach((t) => t.classList.toggle("is-active", t === tab));
-
-          if (!isCategory) {
-            selectedCategories.clear();
-            filterChips.forEach((c) => c.classList.remove("is-selected"));
-            renderizarImoveis("todos");
-            return;
-          }
-
-          const selected = Array.from(selectedCategories);
-          renderizarImoveis(selected.length ? selected : "todos");
+          selectedCategories.clear();
+          filterChips.forEach((c) => c.classList.toggle("is-selected", c.dataset.category === "todos"));
+          renderizarImoveis("todos");
         });
       });
 
       filterChips.forEach((chip) => {
         chip.addEventListener("click", () => {
           const category = chip.dataset.category || chip.textContent.trim();
+
+          if (category === "todos") {
+            selectedCategories.clear();
+            filterChips.forEach((c) => c.classList.toggle("is-selected", c === chip));
+            renderizarImoveis("todos");
+            return;
+          }
+
+          filterChips.forEach((c) => {
+            if (c.dataset.category === "todos") c.classList.remove("is-selected");
+          });
+
           if (selectedCategories.has(category)) {
             selectedCategories.delete(category);
             chip.classList.remove("is-selected");
@@ -2908,6 +2979,11 @@
             selectedCategories.add(category);
             chip.classList.add("is-selected");
           }
+
+          if (!selectedCategories.size) {
+            filterChips.forEach((c) => c.classList.toggle("is-selected", c.dataset.category === "todos"));
+          }
+
           const selected = Array.from(selectedCategories);
           renderizarImoveis(selected.length ? selected : "todos");
         });
@@ -2916,6 +2992,11 @@
       propertyGrid.addEventListener("click", (e) => {
         const btn = e.target.closest("[data-open-property]");
         if (btn) openPropertyModal(btn.dataset.openProperty);
+      });
+
+      propertyOverlay.addEventListener("click", (e) => {
+        const shareButton = e.target.closest("[data-share-property]");
+        if (shareButton) shareProperty(shareButton.dataset.shareProperty, shareButton);
       });
 
       propertyOverlay.addEventListener("click", (e) => {
@@ -2956,4 +3037,3 @@
     </script>
   </body>
 </html>
-
