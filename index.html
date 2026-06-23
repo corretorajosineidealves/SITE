@@ -2741,6 +2741,32 @@
           </div>`;
       }
 
+      function booleanDetailItem(label, value, helper) {
+        if (value === null || value === undefined || value === "") return "";
+        return detailItem(label, value ? "Sim" : "Não", helper);
+      }
+
+      function lotInfrastructureHTML(property) {
+        const isLot = normalizeCategory(property.category) === "lote";
+        if (!isLot) return "";
+
+        const items = [
+          booleanDetailItem("Asfalto", property.has_asphalt, "Rua com pavimentação asfáltica"),
+          booleanDetailItem("Água", property.has_water, "Rede de água disponível"),
+          booleanDetailItem("Energia", property.has_electricity, "Rede de energia elétrica disponível")
+        ].filter(Boolean).join("");
+
+        if (!items) return "";
+
+        return `
+          <section class="detail-group" aria-label="Infraestrutura do lote">
+            <h4>Infraestrutura do lote</h4>
+            <div class="detail-list">
+              ${items}
+            </div>
+          </section>`;
+      }
+
       /* ── Modal ── */
       function openPropertyModal(id, updateHash = true) {
         const property = propertyCache.find((p) => String(p.id) === String(id));
@@ -2800,6 +2826,8 @@
                   ${detailItem("m² de terreno",    property.land_area_m2,  "Metragem do terreno")}
                 </div>
               </section>
+
+              ${lotInfrastructureHTML(property)}
 
               <section class="modal-description">
                 <h4>${escapeHTML(property.short_description || property.title || "Descrição do imóvel")}</h4>
