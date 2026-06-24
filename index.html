@@ -1,5 +1,6 @@
 
 
+
 <!doctype html>
 <html lang="pt-BR">
   <head>
@@ -11,6 +12,22 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W9HQJ2Z5');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google Ads conversion tracking -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18241712740"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-18241712740');
+    </script>
     <style>
       :root {
         --brown: #3e2b1c;
@@ -2195,6 +2212,10 @@
     </style>
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9HQJ2Z5"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <header class="site-header" id="siteHeader">
       <nav class="nav" aria-label="Navegação principal">
         <a class="brand" href="#inicio" aria-label="Josineide Alves Corretora de Imóveis">
@@ -2482,6 +2503,7 @@
       const SUPABASE_ANON_KEY = "sb_publishable_9OAhh2faB-1zsVHn6qdr4A_i8p1Kj1q";
       const WHATSAPP_NUMBER = "5563999337030";
       const supabaseClient = window.supabase?.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      const GOOGLE_ADS_WHATSAPP_CONVERSION = "AW-18241712740/PlwFCI7V78QcEOTkqfpD";
 
       const header          = document.querySelector("#siteHeader");
       const toggle          = document.querySelector(".menu-toggle");
@@ -2503,6 +2525,73 @@
       let propertyCache     = [];
       let activeCategory    = "todos";
       let selectedCategories = new Set();
+
+      function isWhatsAppURL(url) {
+        return /(^|\.)wa\.me$|(^|\.)whatsapp\.com$/.test(url.hostname);
+      }
+
+      function trackWhatsAppConversion(link) {
+        const href = link.href;
+        const target = link.getAttribute("target");
+        const opensNewTab = target && target.toLowerCase() !== "_self";
+        let conversionSent = false;
+        let newTabOpened = false;
+
+        const openWhatsAppTab = () => {
+          if (newTabOpened) return;
+          newTabOpened = true;
+          window.open(href, target || "_blank", "noopener");
+        };
+
+        const continueToWhatsApp = () => {
+          if (conversionSent) return;
+          conversionSent = true;
+
+          if (opensNewTab) {
+            openWhatsAppTab();
+            return;
+          }
+
+          window.location.href = href;
+        };
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "whatsapp_click",
+          conversion_id: "AW-18241712740",
+          conversion_label: "PlwFCI7V78QcEOTkqfpD",
+          whatsapp_url: href
+        });
+
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "conversion", {
+            send_to: GOOGLE_ADS_WHATSAPP_CONVERSION,
+            event_callback: continueToWhatsApp
+          });
+          if (opensNewTab) openWhatsAppTab();
+          setTimeout(continueToWhatsApp, 1000);
+          return;
+        }
+
+        continueToWhatsApp();
+      }
+
+      document.addEventListener("click", (event) => {
+        const link = event.target.closest("a[href]");
+        if (!link) return;
+
+        let url;
+        try {
+          url = new URL(link.href);
+        } catch (error) {
+          return;
+        }
+
+        if (!isWhatsAppURL(url)) return;
+
+        event.preventDefault();
+        trackWhatsAppConversion(link);
+      });
 
       /* ── Helpers ── */
       function escapeHTML(value = "") {
